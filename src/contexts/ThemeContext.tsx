@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
-type ColorTheme = 'default' | 'blue' | 'emerald';
+type ColorTheme = 'default' | 'blue' | 'emerald' | 'orange' | 'red';
 
 interface ThemeContextType {
   theme: Theme;
@@ -41,7 +41,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const root = document.documentElement;
     
     // Remove all color theme classes
-    root.classList.remove('theme-blue', 'theme-emerald');
+    root.classList.remove('theme-blue', 'theme-emerald', 'theme-orange', 'theme-red');
     
     // Add the current color theme class
     if (colorTheme !== 'default') {
