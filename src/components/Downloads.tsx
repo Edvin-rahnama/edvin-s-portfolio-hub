@@ -60,7 +60,7 @@ export function Downloads() {
                       {t(`downloads.${item.key}.desc`)}
                     </p>
                     <Button asChild size="sm" className="rounded-full">
-                      <a href={item.file} download={item.filename}>
+                      <a href={item.file} target="_blank" rel="noopener noreferrer">
                         <Download className="w-4 h-4 mr-2" />
                         {t('downloads.button')}
                       </a>
