@@ -5,62 +5,53 @@ const experiences = [
   {
     title: { en: 'Data Scientist', de: 'Data Scientist', es: 'Científico de Datos' },
     company: 'Helmholtz-Zentrum Hereon',
-    location: 'Geesthacht, Germany',
+    location: { en: 'Geesthacht, Germany', de: 'Geesthacht, Deutschland', es: 'Geesthacht, Alemania' },
     period: { start: '07/2025', end: null },
     description: {
       en: [
-        'Built physics-informed models (PINNs and PINO) to solve PDE-governed systems; tracked data/BC/PDE residual losses and training curves.',
-        'Performed corrosion kinetics parameter estimation from polarization data, fitting key quantities (exchange current density, transfer coefficients, equilibrium terms) and validating fits against full I–E behavior.',
-        'Used disciplined workflows (versioned configs, explicit snapshot inputs), plus sanity checks for loss balance and stability during training.',
+        'Development of physics-informed models (PINNs, PINO, MBAE) for solving PDE-governed systems.',
+        'Parameter estimation for corrosion kinetics from polarization data and validation beyond the Tafel region.',
+        'Utilization of versioned configurations and quality assurance checks for robust training pipelines.',
       ],
       de: [
-        'Entwicklung physik-informierter Modelle (PINNs und PINO) zur Lösung PDE-gesteuerter Systeme; Verfolgung von Daten-/BC-/PDE-Residualverlusten und Trainingskurven.',
-        'Parameterschätzung für Korrosionskinetik aus Polarisationsdaten, Anpassung von Schlüsselgrößen (Austauschstromdichte, Übertragungskoeffizienten, Gleichgewichtsterme) und Validierung gegen volles I-E-Verhalten.',
-        'Nutzung disziplinierter Workflows (versionierte Konfigurationen, explizite Snapshot-Eingaben) sowie Plausibilitätsprüfungen für Verlustbalance und Stabilität während des Trainings.',
+        'Entwicklung physik-informierter Modelle (PINNs, PINO, MBAE) zur Lösung PDE-gesteuerter Systeme.',
+        'Parameterschätzung für Korrosionskinetik aus Polarisationsdaten und Validierung über den Tafel-Bereich hinaus.',
+        'Nutzung versionierter Konfigurationen und Qualitätssicherungschecks für robuste Trainings-Pipelines.',
       ],
       es: [
-        'Construí modelos informados por física (PINNs y PINO) para resolver sistemas gobernados por PDE; seguimiento de pérdidas residuales de datos/BC/PDE y curvas de entrenamiento.',
-        'Realicé estimación de parámetros de cinética de corrosión a partir de datos de polarización, ajustando cantidades clave y validando contra el comportamiento completo I-E.',
-        'Utilicé flujos de trabajo disciplinados (configuraciones versionadas, entradas de snapshot explícitas) más verificaciones de cordura para balance de pérdidas y estabilidad durante el entrenamiento.',
+        'Desarrollo de modelos informados por física (PINNs, PINO, MBAE) para resolver sistemas gobernados por PDE.',
+        'Estimación de parámetros de cinética de corrosión a partir de datos de polarización y validación más allá de la región de Tafel.',
+        'Utilización de configuraciones versionadas y controles de aseguramiento de calidad para pipelines de entrenamiento robustos.',
       ],
     },
   },
   {
     title: { en: 'IT Systems & Automation Engineer', de: 'IT Systems & Automation Engineer', es: 'Ingeniero de Sistemas TI y Automatización' },
     company: 't2consult',
-    location: 'Preetz, Germany',
+    location: { en: 'Preetz, Germany', de: 'Preetz, Deutschland', es: 'Preetz, Alemania' },
     period: { start: '04/2025', end: null },
     description: {
       en: [
-        'Jira Software customization, multi-env GitHub Actions pipelines, and CI/CD deployment with workflow and permission automation.',
-        'Windows Server file system automation (PowerShell for file ops, log lifecycle, safe cleanup); Linux server scripting (bash/cron/systemd) for build/deploy/maintenance.',
-        'Zabbix monitoring integration; Python automation log pipeline for observability.',
-        'n8n workflow automation across Jira/DB/webhooks.',
-        'Userscripts and targeted JS injections for Jira Data Center diagnostics.',
-        'Data Center App Approval for Confluence/Jira and enterprise instance readiness (performance, security, supportability).',
+        'Development and maintenance of backend integrations between Jira Data Center, custom apps, JS injections and monitoring databases; building Python-based ETL pipelines that transfer logs and metrics from Linux/Windows servers to Zabbix/Grafana and AWS monitoring (incl. CloudWatch).',
+        'Automation of deployments and system tasks with GitHub Actions, PowerShell, Bash and AWS Lambda (backups, log lifecycle) to reduce manual steps and error rates; implementation of workflow, permission and data automations in Jira using scripts, webhooks and n8n.',
+        'Analysis of performance bottlenecks in Jira/Confluence Cloud/Data Center (database queries, JVM metrics, add-ons) and contribution to tuning and capacity planning for high-availability setups; support for app release and upgrade processes (Forge and Data Center apps).',
       ],
       de: [
-        'Jira-Software-Anpassung, Multi-Env GitHub-Actions-Pipelines und CI/CD-Deployment mit Workflow- und Berechtigungsautomatisierung.',
-        'Windows-Server-Dateisystemautomatisierung (PowerShell für Dateioperationen, Log-Lifecycle, sichere Bereinigung); Linux-Server-Scripting (bash/cron/systemd) für Build/Deploy/Wartung.',
-        'Zabbix-Monitoring-Integration; Python-Automatisierungs-Log-Pipeline für Observability.',
-        'n8n-Workflow-Automatisierung über Jira/DB/Webhooks.',
-        'Userscripts und gezielte JS-Injections für Jira Data Center-Diagnose.',
-        'Data-Center-App-Genehmigung für Confluence/Jira und Enterprise-Instanz-Bereitschaft (Performance, Sicherheit, Supportfähigkeit).',
+        'Entwicklung und Wartung von Backend-Integrationen zwischen Jira Data Center, maßgeschneiderten Apps, JS Injections und Monitoring-Datenbanken; Aufbau von Python-basierten ETL-Pipelines, die Logs und Metriken von Linux/Windows-Servern in Zabbix/Grafana und AWS-Monitoring (inkl. CloudWatch) überführen.',
+        'Automatisierung von Deployments und Systemaufgaben mit GitHub Actions, PowerShell, Bash und AWS Lambda (Backups, Log-Lifecycle), um manuelle Schritte und Fehlerraten zu reduzieren; Implementierung von Workflow-, Berechtigungs- und Datenautomatisierungen in Jira mittels Skripten, Webhooks und n8n.',
+        'Analyse von Performance-Engpässen in Jira/Confluence Cloud/Data Center (Datenbankabfragen, JVM-Metriken, Add-ons) und Mitarbeit an Tuning- und Kapazitätsplanung für hochverfügbare Setups; Unterstützung von App-Freigabe- und Upgrade-Prozessen (Forge- und Data-Center-Apps).',
       ],
       es: [
-        'Personalización de Jira Software, pipelines multi-entorno de GitHub Actions y despliegue CI/CD con automatización de flujos de trabajo y permisos.',
-        'Automatización del sistema de archivos de Windows Server (PowerShell para operaciones de archivos); scripting de servidor Linux (bash/cron/systemd) para construcción/despliegue/mantenimiento.',
-        'Integración de monitoreo Zabbix; pipeline de logs de automatización Python para observabilidad.',
-        'Automatización de flujos de trabajo n8n a través de Jira/DB/webhooks.',
-        'Userscripts e inyecciones JS dirigidas para diagnósticos de Jira Data Center.',
-        'Aprobación de apps Data Center para Confluence/Jira y preparación de instancias empresariales.',
+        'Desarrollo y mantenimiento de integraciones backend entre Jira Data Center, apps personalizadas, inyecciones JS y bases de datos de monitoreo; construcción de pipelines ETL basados en Python que transfieren logs y métricas desde servidores Linux/Windows a Zabbix/Grafana y monitoreo AWS (incl. CloudWatch).',
+        'Automatización de despliegues y tareas del sistema con GitHub Actions, PowerShell, Bash y AWS Lambda (backups, ciclo de vida de logs) para reducir pasos manuales y tasas de error; implementación de automatizaciones de flujos de trabajo, permisos y datos en Jira usando scripts, webhooks y n8n.',
+        'Análisis de cuellos de botella de rendimiento en Jira/Confluence Cloud/Data Center (consultas de base de datos, métricas JVM, add-ons) y contribución a tuning y planificación de capacidad para setups de alta disponibilidad; soporte para procesos de lanzamiento y actualización de apps (Forge y Data Center).',
       ],
     },
   },
   {
     title: { en: 'Data Science Project Collaborator', de: 'Data Science Projektmitarbeiter', es: 'Colaborador de Proyecto de Ciencia de Datos' },
     company: '80s80s Radio GmbH & Co. KG',
-    location: 'Kiel, Germany',
+    location: { en: 'Kiel, Germany', de: 'Kiel, Deutschland', es: 'Kiel, Alemania' },
     period: { start: '08/2023', end: '01/2024' },
     description: {
       en: [
@@ -92,7 +83,7 @@ const experiences = [
   {
     title: { en: 'Business Intelligence Analyst', de: 'Business Intelligence Analyst', es: 'Analista de Inteligencia de Negocios' },
     company: 'Satrap Investment Group Co.',
-    location: 'Famagusta, Cyprus',
+    location: { en: 'Famagusta, Cyprus', de: 'Famagusta, Zypern', es: 'Famagusta, Chipre' },
     period: { start: '07/2019', end: '11/2022' },
     description: {
       en: [
@@ -112,7 +103,7 @@ const experiences = [
   {
     title: { en: 'Computer System Operator', de: 'Computersystembetreiber', es: 'Operador de Sistemas Informáticos' },
     company: 'Eastern Mediterranean University - Faculty of Tourism',
-    location: 'Famagusta, Cyprus',
+    location: { en: 'Famagusta, Cyprus', de: 'Famagusta, Zypern', es: 'Famagusta, Chipre' },
     period: { start: '2019', end: '2021' },
     description: {
       en: [
@@ -135,7 +126,7 @@ const experiences = [
   {
     title: { en: 'Web Developer', de: 'Web Developer', es: 'Desarrollador Web' },
     company: 'Ratin Company',
-    location: 'Tehran, Iran',
+    location: { en: 'Tehran, Iran', de: 'Teheran, Iran', es: 'Teherán, Irán' },
     period: { start: '01/2017', end: '05/2019' },
     description: {
       en: [
@@ -193,7 +184,7 @@ export function Experience() {
                         </div>
                         <div className="flex items-center gap-1">
                           <MapPin className="w-4 h-4" />
-                          <span>{exp.location}</span>
+                          <span>{exp.location[language]}</span>
                         </div>
                       </div>
                     </div>
