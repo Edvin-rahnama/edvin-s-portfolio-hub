@@ -1,4 +1,4 @@
-import { Code2, Cloud, Globe, BarChart3, Users } from 'lucide-react';
+import { Code2, Cloud, Globe, BarChart3, Users, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const skillCategories = [
@@ -101,9 +101,10 @@ export function Skills() {
                   {skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 text-sm bg-secondary text-secondary-foreground rounded-full font-mono transition-colors hover:bg-primary/10 hover:text-primary"
+                      className="px-3 py-1.5 text-sm bg-secondary text-secondary-foreground rounded-full font-mono transition-colors hover:bg-primary/10 hover:text-primary flex items-center gap-1.5"
                     >
-                      {skill}
+                      <CheckCircle2 className="w-3 h-3 text-primary" />
+                      <span>{skill}</span>
                     </span>
                   ))}
                 </div>
