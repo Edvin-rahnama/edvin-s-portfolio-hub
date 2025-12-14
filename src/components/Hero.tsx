@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button';
 import profileImage from '@/assets/profile.jpg';
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+
+  // Choose CV based on language (default to English for Spanish)
+  const cvFile = language === 'de' 
+    ? '/downloads/Edvin-Rahnama-CV-DE.pdf' 
+    : '/downloads/Edvin-Rahnama-CV-EN.pdf';
 
   return (
     <section
@@ -75,7 +80,7 @@ export function Hero() {
                   size="lg"
                   className="rounded-full"
                 >
-                  <a href="/downloads/Edvin-Rahnama-CV.pdf" download>
+                  <a href={cvFile} download>
                     <Download className="w-4 h-4 mr-2" />
                     {t('hero.cta.cv')}
                   </a>

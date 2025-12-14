@@ -127,6 +127,9 @@ export function Navbar() {
                 <DropdownMenuItem onClick={() => setLanguage('de')}>
                   🇩🇪 Deutsch {language === 'de' && '✓'}
                 </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLanguage('es')}>
+                  🇪🇸 Español {language === 'es' && '✓'}
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
