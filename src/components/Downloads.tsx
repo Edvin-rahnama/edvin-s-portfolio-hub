@@ -4,10 +4,28 @@ import { Button } from '@/components/ui/button';
 
 const downloads = [
   {
-    key: 'cv',
+    key: 'cv_en',
     icon: FileText,
-    file: '/downloads/Edvin-Rahnama-CV.pdf',
-    filename: 'Edvin-Rahnama-CV.pdf',
+    file: '/downloads/Edvin-Rahnama-CV-EN.pdf',
+    filename: 'Edvin-Rahnama-CV-EN.pdf',
+  },
+  {
+    key: 'cv_de',
+    icon: FileText,
+    file: '/downloads/Edvin-Rahnama-CV-DE.pdf',
+    filename: 'Edvin-Rahnama-CV-DE.pdf',
+  },
+  {
+    key: 'certifications',
+    icon: Award,
+    file: '/downloads/Certifications.pdf',
+    filename: 'Certifications.pdf',
+  },
+  {
+    key: 'recommendations',
+    icon: Users,
+    file: '/downloads/Letter-of-Recommendation.pdf',
+    filename: 'Letter-of-Recommendation.pdf',
   },
 ];
 
@@ -21,27 +39,27 @@ export function Downloads() {
           {t('downloads.title')}
         </h2>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
           {downloads.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.key}
-                className="glass-card rounded-2xl p-8 hover:shadow-glow transition-all duration-300 animate-scale-in"
+                className="glass-card rounded-2xl p-6 hover:shadow-glow transition-all duration-300 animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex items-start gap-6">
-                  <div className="p-4 rounded-2xl bg-primary/10 shrink-0">
-                    <Icon className="w-8 h-8 text-primary" />
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-primary/10 shrink-0">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold font-display mb-2">
+                    <h3 className="text-lg font-semibold font-display mb-2">
                       {t(`downloads.${item.key}`)}
                     </h3>
-                    <p className="text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground mb-4">
                       {t(`downloads.${item.key}.desc`)}
                     </p>
-                    <Button asChild className="rounded-full">
+                    <Button asChild size="sm" className="rounded-full">
                       <a href={item.file} download={item.filename}>
                         <Download className="w-4 h-4 mr-2" />
                         {t('downloads.button')}
