@@ -96,6 +96,18 @@ export function Navbar() {
                     Emerald {colorTheme === 'emerald' && '✓'}
                   </div>
                 </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setColorTheme('orange')}>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded-full bg-[hsl(25,95%,53%)]" />
+                    Orange {colorTheme === 'orange' && '✓'}
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setColorTheme('red')}>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded-full bg-[hsl(0,72%,51%)]" />
+                    Red {colorTheme === 'red' && '✓'}
+                  </div>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

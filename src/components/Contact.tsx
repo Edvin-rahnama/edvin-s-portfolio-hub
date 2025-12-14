@@ -20,7 +20,7 @@ const contactLinks = [
     key: 'contact.github',
     icon: Github,
     label: 'GitHub Profile',
-    href: 'https://github.com/',
+    href: 'https://github.com/amirhossein-rahnama',
     external: true,
   },
 ];
