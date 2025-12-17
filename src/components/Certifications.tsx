@@ -34,9 +34,13 @@ export function Certifications() {
   const { t } = useLanguage();
 
   return (
-    <section id="certifications" className="py-24">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">
+    <section id="certifications" className="py-24 relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-1/3 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16 animate-fade-in">
           {t('certifications.title')}
         </h2>
 
@@ -44,18 +48,18 @@ export function Certifications() {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="glass-card rounded-xl p-5 hover:shadow-glow transition-all duration-300 hover:-translate-y-1 animate-scale-in group"
+              className="glass-card rounded-xl p-5 animate-scale-in group"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary/20 transition-colors">
+                <div className="p-2 rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                   <Award className="w-4 h-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-medium mb-1 leading-tight">{cert.name}</h3>
+                  <h3 className="font-medium mb-1 leading-tight group-hover:text-primary transition-colors duration-300">{cert.name}</h3>
                   <p className="text-xs text-muted-foreground mb-2">{cert.issuer}</p>
                   <span
-                    className={`inline-block px-2 py-0.5 text-xs rounded-full font-mono ${
+                    className={`inline-block px-2 py-0.5 text-xs rounded-full font-mono transition-all duration-300 hover:scale-105 ${
                       categoryColors[cert.category] || 'bg-muted text-muted-foreground'
                     }`}
                   >
