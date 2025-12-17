@@ -10,7 +10,7 @@ export default defineConfig(({ command, mode }) => ({
     port: 8080,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
-  base: "/edvin-s-portfolio-hub/",
+  base: command === 'build' ? "/edvin-s-portfolio-hub/" : "/",
 
   resolve: {
     alias: {
