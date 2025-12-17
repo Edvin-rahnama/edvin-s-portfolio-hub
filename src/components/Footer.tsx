@@ -11,9 +11,7 @@ export function Footer() {
           <div className="text-sm text-muted-foreground">
             © {currentYear} Edvin Rahnama. {t('footer.rights')}
           </div>
-          <div className="text-sm text-muted-foreground font-mono">
-            Built with ❤️ and React
-          </div>
+
         </div>
       </div>
     </footer>
