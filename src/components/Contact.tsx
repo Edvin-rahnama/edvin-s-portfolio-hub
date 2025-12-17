@@ -29,13 +29,16 @@ export function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="py-24">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 animate-fade-in">
             {t('contact.title')}
           </h2>
-          <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto animate-slide-up" style={{ animationDelay: '0.1s' }}>
             {t('contact.subtitle')}
           </p>
 
@@ -48,7 +51,7 @@ export function Contact() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full h-auto py-4 px-6 animate-scale-in hover:shadow-glow hover:border-primary/50 transition-all"
+                  className="rounded-full h-auto py-4 px-6 animate-scale-in hover:scale-105 hover:shadow-glow hover:border-primary/50 transition-all duration-300 group"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <a
@@ -56,9 +59,9 @@ export function Contact() {
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
                   >
-                    <Icon className="w-5 h-5 mr-3 text-primary" />
+                    <Icon className="w-5 h-5 mr-3 text-primary group-hover:scale-110 transition-transform duration-300" />
                     <span className="text-sm font-medium">{link.label}</span>
-                    {link.external && <ExternalLink className="w-4 h-4 ml-2 opacity-50" />}
+                    {link.external && <ExternalLink className="w-4 h-4 ml-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />}
                   </a>
                 </Button>
               );
