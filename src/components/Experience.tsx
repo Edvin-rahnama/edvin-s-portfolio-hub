@@ -146,16 +146,20 @@ export function Experience() {
   const { language, t } = useLanguage();
 
   return (
-    <section id="experience" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="experience" className="py-24 bg-secondary/30 relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16 animate-fade-in">
             {t('experience.title')}
           </h2>
 
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-border hidden md:block" />
+            {/* Timeline Line with gradient */}
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent hidden md:block" />
 
             <div className="space-y-12">
               {experiences.map((exp, index) => (
@@ -164,13 +168,13 @@ export function Experience() {
                   className="relative pl-0 md:pl-20 animate-slide-up"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-6 top-2 w-4 h-4 rounded-full bg-primary shadow-glow hidden md:block" />
+                  {/* Timeline Dot with pulse */}
+                  <div className="absolute left-6 top-2 w-4 h-4 rounded-full bg-primary shadow-glow hidden md:block animate-glow-pulse" />
 
-                  <div className="glass-card rounded-2xl p-6 hover:shadow-glow transition-shadow duration-300">
+                  <div className="glass-card rounded-2xl p-6 group">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                       <div>
-                        <h3 className="text-xl font-semibold font-display">
+                        <h3 className="text-xl font-semibold font-display group-hover:text-primary transition-colors duration-300">
                           {exp.title[language]}
                         </h3>
                         <p className="text-primary font-medium">{exp.company}</p>
@@ -191,9 +195,9 @@ export function Experience() {
 
                     <ul className="space-y-2">
                       {exp.description[language].map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-muted-foreground">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                          <span>{item}</span>
+                        <li key={idx} className="flex items-start gap-3 text-muted-foreground group/item">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 group-hover/item:scale-150 transition-transform duration-300" />
+                          <span className="group-hover/item:text-foreground transition-colors duration-300">{item}</span>
                         </li>
                       ))}
                     </ul>

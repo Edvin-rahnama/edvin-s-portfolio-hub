@@ -20,11 +20,21 @@ export function Hero() {
       <div className="absolute inset-0 bg-hero-gradient" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
+      
+      {/* Animated gradient orbs */}
+      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-2xl animate-float" />
+      <div className="absolute bottom-1/3 left-1/3 w-48 h-48 bg-gradient-to-tr from-primary/15 to-transparent rounded-full blur-2xl animate-float-delayed" />
 
-      {/* Floating Shapes */}
-      <div className="absolute top-1/3 right-20 w-4 h-4 bg-primary/40 rounded-full animate-float hidden lg:block" />
+      {/* Floating Shapes with enhanced animations */}
+      <div className="absolute top-1/3 right-20 w-4 h-4 bg-primary/40 rounded-full animate-bounce-subtle hidden lg:block" />
       <div className="absolute bottom-1/3 left-32 w-3 h-3 bg-primary/30 rounded-full animate-float-delayed hidden lg:block" />
       <div className="absolute top-1/2 left-20 w-2 h-2 bg-primary/50 rounded-full animate-float hidden lg:block" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-2/3 right-32 w-5 h-5 bg-primary/20 rounded-full animate-bounce-subtle hidden lg:block" style={{ animationDelay: '0.5s' }} />
+      <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full animate-float hidden lg:block" style={{ animationDelay: '1.5s' }} />
+
+      {/* Decorative lines */}
+      <div className="absolute top-20 left-10 w-px h-32 bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block" />
+      <div className="absolute bottom-20 right-10 w-px h-32 bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
@@ -32,7 +42,7 @@ export function Hero() {
             {/* Content */}
             <div className="lg:col-span-3 text-center lg:text-left">
               <div className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                <p className="text-primary font-mono text-sm mb-4">
+                <p className="text-primary font-mono text-sm mb-4 tracking-wider">
                   {t('hero.greeting')}
                 </p>
               </div>
@@ -40,7 +50,7 @@ export function Hero() {
               <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 leading-tight">
                   Edvin{' '}
-                  <span className="text-gradient">Rahnama</span>
+                  <span className="text-gradient animate-gradient-shift bg-gradient-to-r from-primary via-primary-glow to-primary">Rahnama</span>
                 </h1>
               </div>
 
@@ -52,7 +62,7 @@ export function Hero() {
 
               <div className="animate-slide-up" style={{ animationDelay: '0.4s' }}>
                 <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
-                  <MapPin className="w-4 h-4 text-primary" />
+                  <MapPin className="w-4 h-4 text-primary animate-bounce-subtle" />
                   <span className="text-sm">{t('hero.location')}</span>
                 </div>
               </div>
@@ -67,7 +77,7 @@ export function Hero() {
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full shadow-glow hover:shadow-lg transition-all"
+                  className="rounded-full shadow-glow hover:shadow-lg transition-all duration-300 hover:scale-105 border-glow"
                 >
                   <a href="#contact">
                     <Mail className="w-4 h-4 mr-2" />
@@ -78,7 +88,7 @@ export function Hero() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full"
+                  className="rounded-full transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-primary/5"
                 >
                   <a href={cvFile} download>
                     <Download className="w-4 h-4 mr-2" />
@@ -90,26 +100,31 @@ export function Hero() {
 
             {/* Profile Image */}
             <div className="lg:col-span-2 flex justify-center">
-              <div className="animate-scale-in relative" style={{ animationDelay: '0.4s' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full blur-2xl scale-110" />
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-glow">
+              <div className="animate-scale-in relative group" style={{ animationDelay: '0.4s' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-xl animate-rotate-slow opacity-50" />
+                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-glow transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-[0_0_60px_hsl(var(--primary)/0.3)]">
                   <img
                     src={profileImage}
                     alt="Edvin Rahnama"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                {/* Decorative ring */}
+                {/* Decorative rings */}
                 <div className="absolute inset-0 border-2 border-primary/10 rounded-full scale-125 animate-pulse-slow" />
+                <div className="absolute inset-0 border border-primary/5 rounded-full scale-150 animate-pulse-slow" style={{ animationDelay: '1s' }} />
               </div>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <a href="#experience" className="text-muted-foreground hover:text-primary transition-colors">
-            <ArrowDown className="w-6 h-6" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+          <a href="#experience" className="text-muted-foreground hover:text-primary transition-colors group">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">scroll</span>
+              <ArrowDown className="w-6 h-6 animate-bounce" />
+            </div>
           </a>
         </div>
       </div>

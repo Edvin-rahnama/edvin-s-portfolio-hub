@@ -39,8 +39,8 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-3' : 'bg-transparent py-5'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'glass py-3 shadow-soft' : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -48,18 +48,19 @@ export function Navbar() {
           {/* Logo */}
           <a
             href="#"
-            className="text-xl font-bold font-display text-gradient"
+            className="text-xl font-bold font-display text-gradient hover:scale-105 transition-transform duration-300"
           >
             ER
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <a
                 key={item.key}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {t(item.key)}
               </a>
@@ -71,38 +72,38 @@ export function Navbar() {
             {/* Color Theme Picker */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
+                <Button variant="ghost" size="icon" className="rounded-full hover:scale-110 transition-transform duration-300">
                   <Palette className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="animate-scale-in">
                 <DropdownMenuLabel>Color Theme</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setColorTheme('default')}>
+                <DropdownMenuItem onClick={() => setColorTheme('default')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded-full bg-[hsl(174,70%,40%)]" />
                     Teal {colorTheme === 'default' && '✓'}
                   </div>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setColorTheme('blue')}>
+                <DropdownMenuItem onClick={() => setColorTheme('blue')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded-full bg-[hsl(217,91%,60%)]" />
                     Blue {colorTheme === 'blue' && '✓'}
                   </div>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setColorTheme('emerald')}>
+                <DropdownMenuItem onClick={() => setColorTheme('emerald')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded-full bg-[hsl(160,84%,39%)]" />
                     Emerald {colorTheme === 'emerald' && '✓'}
                   </div>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setColorTheme('orange')}>
+                <DropdownMenuItem onClick={() => setColorTheme('orange')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded-full bg-[hsl(25,95%,53%)]" />
                     Orange {colorTheme === 'orange' && '✓'}
                   </div>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setColorTheme('red')}>
+                <DropdownMenuItem onClick={() => setColorTheme('red')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded-full bg-[hsl(0,72%,51%)]" />
                     Red {colorTheme === 'red' && '✓'}
@@ -116,12 +117,12 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full hover:scale-110 transition-transform duration-300"
             >
               {theme === 'dark' ? (
-                <Sun className="h-4 w-4" />
+                <Sun className="h-4 w-4 transition-transform duration-300 hover:rotate-45" />
               ) : (
-                <Moon className="h-4 w-4" />
+                <Moon className="h-4 w-4 transition-transform duration-300 hover:-rotate-12" />
               )}
             </Button>
 
