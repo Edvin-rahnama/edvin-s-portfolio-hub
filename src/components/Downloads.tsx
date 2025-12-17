@@ -2,35 +2,36 @@ import { Download, FileText, Award, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
-const downloads = [
+const rawDownloads = [
   {
     key: 'cv_en',
     icon: FileText,
-    file: '/downloads/Edvin-Rahnama-CV-EN.pdf',
+    path: 'downloads/Edvin-Rahnama-CV-EN.pdf',
     filename: 'Edvin-Rahnama-CV-EN.pdf',
   },
   {
     key: 'cv_de',
     icon: FileText,
-    file: '/downloads/Edvin-Rahnama-CV-DE.pdf',
+    path: 'downloads/Edvin-Rahnama-CV-DE.pdf',
     filename: 'Edvin-Rahnama-CV-DE.pdf',
   },
   {
     key: 'certifications',
     icon: Award,
-    file: '/downloads/Certifications.pdf',
+    path: 'downloads/Certifications.pdf',
     filename: 'Certifications.pdf',
   },
   {
     key: 'recommendations',
     icon: Users,
-    file: '/downloads/Letter-of-Recommendation.pdf',
+    path: 'downloads/Letter-of-Recommendation.pdf',
     filename: 'Letter-of-Recommendation.pdf',
   },
 ];
 
 export function Downloads() {
   const { t } = useLanguage();
+  const base = import.meta.env.BASE_URL;
 
   return (
     <section id="downloads" className="py-24 bg-secondary/30 relative overflow-hidden">
@@ -44,8 +45,9 @@ export function Downloads() {
         </h2>
 
         <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
-          {downloads.map((item, index) => {
+          {rawDownloads.map((item, index) => {
             const Icon = item.icon;
+            const fullFileUrl = `${base}${item.path}`;
             return (
               <div
                 key={item.key}
@@ -64,7 +66,7 @@ export function Downloads() {
                       {t(`downloads.${item.key}.desc`)}
                     </p>
                     <Button asChild size="sm" className="rounded-full hover:scale-105 transition-transform duration-300">
-                      <a href={item.file} download={item.filename}>
+                      <a href={fullFileUrl} download={item.filename}>
                         <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
                         {t('downloads.button')}
                       </a>
