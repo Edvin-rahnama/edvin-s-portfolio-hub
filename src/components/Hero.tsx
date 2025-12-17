@@ -5,11 +5,14 @@ import profileImage from '@/assets/profile.jpg';
 
 export function Hero() {
   const { language, t } = useLanguage();
+  const base = import.meta.env.BASE_URL;
 
   // Choose CV based on language (default to English for Spanish)
-  const cvFile = language === 'de' 
-    ? '/downloads/Edvin-Rahnama-CV-DE.pdf' 
-    : '/downloads/Edvin-Rahnama-CV-EN.pdf';
+  const cvPath = language === 'de' 
+    ? 'downloads/Edvin-Rahnama-CV-DE.pdf' 
+    : 'downloads/Edvin-Rahnama-CV-EN.pdf';
+
+  const cvFile = `${base}${cvPath}`;
 
   return (
     <section
