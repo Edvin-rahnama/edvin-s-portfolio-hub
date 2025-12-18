@@ -145,15 +145,15 @@ export function Navbar() {
 
             {/* Mobile Menu Toggle */}
             <Button
-              variant="outline"
+              variant="default"
               size="icon"
-              className="lg:hidden rounded-full border-primary/50 bg-primary/10 hover:bg-primary/20 hover:border-primary transition-all duration-300"
+              className="lg:hidden rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5 text-primary" />
+                <X className="h-5 w-5" />
               ) : (
-                <Menu className="h-5 w-5 text-primary" />
+                <Menu className="h-5 w-5" />
               )}
             </Button>
           </div>
