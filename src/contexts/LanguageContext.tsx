@@ -21,8 +21,8 @@ const translations = {
 
     // Hero
     'hero.greeting': "Hi, I'm",
-    'hero.role': 'Data Scientist & Software Developer',
-    'hero.description': 'Experienced Data Scientist and Software Developer with a strong foundation in Machine Learning, data-driven automation, and scalable software systems. Skilled in building ML models, optimizing data pipelines, and developing workflow automations in cloud and on-premise environments.',
+    'hero.role': 'Data Scientist & Software Engineer',
+    'hero.description': 'Practice-oriented Data Scientist & Software Engineer with a focus on Machine Learning and MLOps. Specialized in connecting scalable cloud architectures (AWS, Docker) with complex data models. Combines technical depth with solution-oriented thinking to deliver reliable, production-ready systems in interdisciplinary teams.',
     'hero.cta.contact': 'Get in Touch',
     'hero.cta.cv': 'Download CV',
     'hero.location': 'Kiel, Germany',
@@ -102,8 +102,8 @@ const translations = {
 
     // Hero
     'hero.greeting': 'Hallo, ich bin',
-    'hero.role': 'Data Scientist & Softwareentwickler',
-    'hero.description': 'Erfahrener Data Scientist und Softwareentwickler mit einer starken Grundlage in Machine Learning, datengetriebener Automatisierung und skalierbaren Softwaresystemen. Versiert im Aufbau von ML-Modellen, der Optimierung von Datenpipelines und der Entwicklung von Workflow-Automatisierungen.',
+    'hero.role': 'Data Scientist & Software Engineer',
+    'hero.description': 'Praxisorientierter Data Scientist & Software Engineer mit Fokus auf Machine Learning und MLOps. Spezialisiert auf die Verbindung von skalierbaren Cloud-Architekturen (AWS, Docker) mit komplexen Daten-Modellen. Verbindet technische Tiefe mit lösungsorientiertem Denken, um zuverlässige, produktionsreife Systeme in interdisziplinären Teams zu liefern.',
     'hero.cta.contact': 'Kontaktieren',
     'hero.cta.cv': 'Lebenslauf herunterladen',
     'hero.location': 'Kiel, Deutschland',
