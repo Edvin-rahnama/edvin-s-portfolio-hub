@@ -85,15 +85,22 @@ export function Education() {
       <div className="absolute bottom-10 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
       <div className="absolute top-1/2 right-0 w-48 h-48 bg-gradient-to-l from-primary/10 to-transparent rounded-full blur-2xl" />
       
+      {/* Decorative academic elements */}
+      <div className="absolute top-32 right-32 w-20 h-20 border border-primary/10 rounded-full hidden lg:block animate-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-40 left-16 w-12 h-12 border-2 border-primary/10 rotate-45 hidden lg:block" />
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
             <GraduationCap className="w-4 h-4" />
             <span>Academic Background</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold font-display animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
             {t('education.title')}
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            Building a strong foundation in data science, machine learning, and software engineering
+          </p>
         </div>
 
         <div className="max-w-4xl mx-auto grid gap-8">
