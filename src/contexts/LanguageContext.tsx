@@ -56,6 +56,16 @@ const translations = {
     // Certifications
     'certifications.title': 'Certifications',
 
+    // Section badges
+    'section.expertise': 'Technical Expertise',
+    'section.expertise.desc': 'A comprehensive toolkit for building data-driven solutions and scalable applications',
+    'section.academic': 'Academic Background',
+    'section.academic.desc': 'Building a strong foundation in data science, machine learning, and software engineering',
+    'section.development': 'Professional Development',
+    'section.development.desc': 'Continuous learning and professional growth through industry-recognized certifications',
+    'section.career': 'Career Journey',
+    'section.career.desc': 'Building scalable solutions and driving innovation through data science and engineering',
+
     // Downloads
     'downloads.title': 'Downloads',
     'downloads.cv_en': 'CV (English)',
@@ -136,6 +146,16 @@ const translations = {
 
     // Certifications
     'certifications.title': 'Zertifikate',
+
+    // Section badges
+    'section.expertise': 'Technische Expertise',
+    'section.expertise.desc': 'Ein umfassendes Toolkit für datengetriebene Lösungen und skalierbare Anwendungen',
+    'section.academic': 'Akademischer Hintergrund',
+    'section.academic.desc': 'Aufbau eines starken Fundaments in Data Science, Machine Learning und Software Engineering',
+    'section.development': 'Berufliche Weiterentwicklung',
+    'section.development.desc': 'Kontinuierliches Lernen und berufliches Wachstum durch branchenanerkannte Zertifizierungen',
+    'section.career': 'Karriereweg',
+    'section.career.desc': 'Skalierbare Lösungen entwickeln und Innovation durch Data Science und Engineering vorantreiben',
 
     // Downloads
     'downloads.title': 'Downloads',
