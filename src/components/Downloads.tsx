@@ -40,9 +40,15 @@ export function Downloads() {
       <div className="absolute bottom-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16 animate-fade-in">
-          {t('downloads.title')}
-        </h2>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
+            <Download className="w-4 h-4" />
+            <span>{t('downloads.title')}</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
+            {t('downloads.title')}
+          </h2>
+        </div>
 
         <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
           {rawDownloads.map((item, index) => {
