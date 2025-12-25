@@ -18,6 +18,7 @@ const navItems = [
   { key: 'nav.skills', href: '#skills' },
   { key: 'nav.education', href: '#education' },
   { key: 'nav.certifications', href: '#certifications' },
+  { key: 'nav.languages', href: '#languages' },
   { key: 'nav.downloads', href: '#downloads' },
   { key: 'nav.contact', href: '#contact' },
 ];

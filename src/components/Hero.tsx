@@ -122,7 +122,7 @@ export function Hero() {
                 {/* Decorative rings */}
                 <div className="absolute inset-0 border-2 border-primary/10 rounded-full scale-125 animate-pulse-slow" />
                 <div className="absolute inset-0 border border-primary/5 rounded-full scale-150 animate-pulse-slow" style={{ animationDelay: '1s' }} />
-                <div className="absolute inset-0 border border-primary/3 rounded-full scale-[1.75] animate-pulse-slow" style={{ animationDelay: '2s' }} />
+                
               </div>
             </div>
           </div>
