@@ -163,13 +163,13 @@ export function Experience() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
               <Briefcase className="w-4 h-4" />
-              <span>Career Journey</span>
+              <span>{t('section.career')}</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
               {t('experience.title')}
             </h2>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Building scalable solutions and driving innovation through data science and engineering
+              {t('section.career.desc')}
             </p>
           </div>
 

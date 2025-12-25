@@ -110,7 +110,7 @@ export function Hero() {
               <div className="animate-scale-in relative group" style={{ animationDelay: '0.4s' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-xl animate-rotate-slow opacity-50" />
-                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-glow transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-[0_0_80px_hsl(var(--primary)/0.4)]">
+                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-glow transition-all duration-500 group-hover:shadow-[0_0_80px_hsl(var(--primary)/0.4)]">
                   <img
                     src={profileImage}
                     alt="Edvin Rahnama - Data Scientist and Software Engineer"
