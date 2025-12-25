@@ -102,7 +102,7 @@ const experiences = [
     },
   },
   {
-    title: { en: 'IT Assistant (System Administration)', de: 'IT-Assistent (Systemadministration)', es: 'Asistente de TI (Administración de Sistemas)' },
+    title: { en: 'System Administrator (Working Student)', de: 'Systemadministrator (Werkstudent)', es: 'Administrador de Sistemas (Estudiante)' },
     company: 'Eastern Mediterranean University',
     location: { en: 'Famagusta, Cyprus', de: 'Famagusta, Zypern', es: 'Famagusta, Chipre' },
     period: { start: '07/2019', end: '07/2021' },
@@ -123,7 +123,7 @@ const experiences = [
     },
   },
   {
-    title: { en: 'Web Developer', de: 'Web Developer', es: 'Desarrollador Web' },
+    title: { en: 'Junior Full Stack Developer', de: 'Junior Full Stack Developer', es: 'Desarrollador Full Stack Junior' },
     company: 'Ratin Company',
     location: { en: 'Tehran, Iran', de: 'Teheran, Iran', es: 'Teherán, Irán' },
     period: { start: '01/2017', end: '05/2019' },
@@ -155,16 +155,22 @@ export function Experience() {
       <div className="absolute bottom-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
       
+      {/* Decorative grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
               <Briefcase className="w-4 h-4" />
-              <span>{t('experience.title')}</span>
+              <span>Career Journey</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold font-display animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
               {t('experience.title')}
             </h2>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              Building scalable solutions and driving innovation through data science and engineering
+            </p>
           </div>
 
           <div className="relative">

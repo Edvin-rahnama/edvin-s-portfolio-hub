@@ -7,7 +7,7 @@ const skillCategories = [
     icon: Code2,
     gradient: 'from-blue-500/20 to-cyan-500/20',
     skills: [
-      'Python (ML/AI, NLP, Scikit-learn, TensorFlow)',
+      'Python (ML/AI, NLP, Scikit-learn, TensorFlow, Django, Flask)',
       'SQL (MySQL, Oracle, PostgreSQL)',
       'NoSQL (MongoDB)',
       'JavaScript',
@@ -46,7 +46,7 @@ const skillCategories = [
     key: 'skills.bi',
     icon: BarChart3,
     gradient: 'from-amber-500/20 to-orange-500/20',
-    skills: ['Power BI', 'Data Visualization', 'Statistics', 'Data Pipelines', 'ETL', 'GDPR Basics'],
+    skills: ['Power BI', 'Data Visualization', 'Statistics', 'Data Pipelines', 'ETL', 'Basic GDPR Knowledge'],
   },
   {
     key: 'skills.soft',
@@ -85,15 +85,22 @@ export function Skills() {
       <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-full blur-3xl" />
       
+      {/* Decorative elements */}
+      <div className="absolute top-20 left-20 w-24 h-24 border border-primary/10 rounded-2xl rotate-12 hidden lg:block" />
+      <div className="absolute bottom-32 right-20 w-16 h-16 border border-primary/10 rounded-xl -rotate-6 hidden lg:block" />
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
             <Cpu className="w-4 h-4" />
             <span>Technical Expertise</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold font-display animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
             {t('skills.title')}
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            A comprehensive toolkit for building data-driven solutions and scalable applications
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
