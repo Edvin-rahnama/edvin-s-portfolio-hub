@@ -31,15 +31,22 @@ export function Certifications() {
       <div className="absolute top-1/3 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
       <div className="absolute bottom-1/3 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
       
+      {/* Decorative badges */}
+      <div className="absolute top-24 left-24 w-8 h-8 border-2 border-primary/15 rounded-full hidden lg:block animate-bounce-subtle" />
+      <div className="absolute bottom-32 right-32 w-6 h-6 bg-primary/10 rounded-full hidden lg:block animate-float" style={{ animationDelay: '1.5s' }} />
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
             <Award className="w-4 h-4" />
             <span>Professional Development</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold font-display animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
             {t('certifications.title')}
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            Continuous learning and professional growth through industry-recognized certifications
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">

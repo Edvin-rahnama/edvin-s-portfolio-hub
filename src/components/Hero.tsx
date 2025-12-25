@@ -38,6 +38,10 @@ export function Hero() {
       {/* Decorative lines */}
       <div className="absolute top-20 left-10 w-px h-32 bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block" />
       <div className="absolute bottom-20 right-10 w-px h-32 bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block" />
+      
+      {/* Geometric shapes */}
+      <div className="absolute top-1/4 right-1/3 w-8 h-8 border border-primary/20 rotate-45 hidden lg:block animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute bottom-1/3 right-1/4 w-6 h-6 border-2 border-primary/15 rounded-full hidden lg:block animate-float" style={{ animationDelay: '2s' }} />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
@@ -51,7 +55,7 @@ export function Hero() {
               </div>
 
               <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-display mb-4 leading-tight">
                   Edvin{' '}
                   <span className="text-gradient animate-gradient-shift bg-gradient-to-r from-primary via-primary-glow to-primary">Rahnama</span>
                 </h1>
@@ -106,16 +110,19 @@ export function Hero() {
               <div className="animate-scale-in relative group" style={{ animationDelay: '0.4s' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full blur-2xl scale-110 group-hover:scale-125 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-xl animate-rotate-slow opacity-50" />
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-glow transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-[0_0_60px_hsl(var(--primary)/0.3)]">
+                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-glow transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-[0_0_80px_hsl(var(--primary)/0.4)]">
                   <img
                     src={profileImage}
-                    alt="Edvin Rahnama"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    alt="Edvin Rahnama - Data Scientist and Software Engineer"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  {/* Overlay gradient on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 {/* Decorative rings */}
                 <div className="absolute inset-0 border-2 border-primary/10 rounded-full scale-125 animate-pulse-slow" />
                 <div className="absolute inset-0 border border-primary/5 rounded-full scale-150 animate-pulse-slow" style={{ animationDelay: '1s' }} />
+                <div className="absolute inset-0 border border-primary/3 rounded-full scale-[1.75] animate-pulse-slow" style={{ animationDelay: '2s' }} />
               </div>
             </div>
           </div>
