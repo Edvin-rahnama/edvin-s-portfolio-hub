@@ -12,7 +12,7 @@ export function Languages() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 relative">
+    <section id="languages" className="py-16 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-3 mb-8 justify-center animate-fade-in">
@@ -22,7 +22,7 @@ export function Languages() {
             <h3 className="text-2xl font-bold font-display">{t('languages.title')}</h3>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-6">
             {languages.map((lang, index) => (
               <div
                 key={lang.key}

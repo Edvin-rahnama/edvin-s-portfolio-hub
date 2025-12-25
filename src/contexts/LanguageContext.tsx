@@ -16,6 +16,7 @@ const translations = {
     'nav.skills': 'Skills',
     'nav.education': 'Education',
     'nav.certifications': 'Certifications',
+    'nav.languages': 'Languages',
     'nav.downloads': 'Downloads',
     'nav.contact': 'Contact',
 
@@ -107,6 +108,7 @@ const translations = {
     'nav.skills': 'Fähigkeiten',
     'nav.education': 'Ausbildung',
     'nav.certifications': 'Zertifikate',
+    'nav.languages': 'Sprachen',
     'nav.downloads': 'Downloads',
     'nav.contact': 'Kontakt',
 
