@@ -88,8 +88,8 @@ const translations = {
 
     // Languages
     'languages.title': 'Languages',
-    'languages.english': 'English — C1',
-    'languages.german': 'German — B2',
+    'languages.english': 'English',
+    'languages.german': 'German',
     'languages.turkish': 'Turkish',
     'languages.persian': 'Persian (Native)',
 
@@ -180,8 +180,8 @@ const translations = {
 
     // Languages
     'languages.title': 'Sprachen',
-    'languages.english': 'Englisch — C1',
-    'languages.german': 'Deutsch — B2',
+    'languages.english': 'Englisch',
+    'languages.german': 'Deutsch',
     'languages.turkish': 'Türkisch',
     'languages.persian': 'Persisch (Muttersprache)',
 
@@ -261,8 +261,8 @@ const translations = {
 
     // Languages
     'languages.title': 'Idiomas',
-    'languages.english': 'Inglés — C1',
-    'languages.german': 'Alemán — B2',
+    'languages.english': 'Inglés',
+    'languages.german': 'Alemán',
     'languages.turkish': 'Turco',
     'languages.persian': 'Persa (Nativo)',
 

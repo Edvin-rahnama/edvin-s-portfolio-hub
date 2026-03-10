@@ -1,5 +1,6 @@
 import { GraduationCap, Calendar, MapPin, BookOpen, Award, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const education = [
   {
@@ -77,6 +78,7 @@ const education = [
 
 export function Education() {
   const { language, t } = useLanguage();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <section id="education" className="py-24 bg-secondary/30 relative overflow-hidden">
@@ -90,105 +92,113 @@ export function Education() {
       <div className="absolute bottom-40 left-16 w-12 h-12 border-2 border-primary/10 rotate-45 hidden lg:block" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
+        <div ref={headerRef} className={`text-center mb-16 scroll-reveal ${headerVisible ? 'visible' : ''}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
             <GraduationCap className="w-4 h-4" />
             <span>{t('section.academic')}</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
             {t('education.title')}
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             {t('section.academic.desc')}
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto grid gap-8">
           {education.map((edu, index) => (
-            <div
-              key={index}
-              className="glass-card rounded-2xl p-8 animate-slide-up group relative overflow-hidden"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              {/* Decorative gradient corner */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 relative">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 shrink-0 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
-                    <GraduationCap className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-xl font-semibold font-display group-hover:text-primary transition-colors duration-300">
-                        {edu.degree[language]}
-                      </h3>
-                      {edu.current && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-mono">
-                          <Star className="w-3 h-3" />
-                          In Progress
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-primary font-medium text-lg">{edu.institution}</p>
-                    {edu.accreditation && (
-                      <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
-                        <Award className="w-3 h-3 text-amber-500" />
-                        {edu.accreditation}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className="flex flex-col items-start md:items-end gap-2 text-sm text-muted-foreground shrink-0">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
-                    <Calendar className="w-4 h-4 text-primary" />
-                    <span className="font-mono">{edu.period}</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span>{edu.location[language]}</span>
-                  </div>
-                  {edu.gpa && (
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-mono">
-                      <span>GPA: {edu.gpa}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* What I Learned */}
-              <div className="mb-6 p-5 rounded-xl bg-gradient-to-br from-muted/70 to-muted/30 border border-border/50 group-hover:border-primary/20 transition-colors duration-300">
-                <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium">{t('education.learned')}</span>
-                </div>
-                <ul className="space-y-3">
-                  {edu.highlights[language].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground group/item">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-1.5 shrink-0 group-hover/item:scale-150 transition-transform duration-300" />
-                      <span className="group-hover/item:text-foreground transition-colors duration-300 leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <p className="text-sm text-muted-foreground mb-3 font-medium">{t('education.focus')}:</p>
-                <div className="flex flex-wrap gap-2">
-                  {edu.focus[language].map((item, idx) => (
-                    <span
-                      key={idx}
-                      className="px-4 py-2 text-sm bg-accent/50 text-accent-foreground rounded-full font-mono hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default hover:scale-105 hover:shadow-md border border-border/50 hover:border-primary"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <EducationCard key={index} edu={edu} index={index} language={language} t={t} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function EducationCard({ edu, index, language, t }: { edu: typeof education[0]; index: number; language: string; t: (key: string) => string }) {
+  const { ref, isVisible } = useScrollReveal();
+
+  return (
+    <div
+      ref={ref}
+      className={`glass-card rounded-2xl p-8 group relative overflow-hidden scroll-reveal ${isVisible ? 'visible' : ''}`}
+      style={{ transitionDelay: `${index * 0.15}s` }}
+    >
+      {/* Decorative gradient corner */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 relative">
+        <div className="flex items-start gap-4">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 shrink-0 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
+            <GraduationCap className="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h3 className="text-xl font-semibold font-display group-hover:text-primary transition-colors duration-300">
+                {edu.degree[language]}
+              </h3>
+              {edu.current && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-mono">
+                  <Star className="w-3 h-3" />
+                  In Progress
+                </span>
+              )}
+            </div>
+            <p className="text-primary font-medium text-lg">{edu.institution}</p>
+            {edu.accreditation && (
+              <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
+                <Award className="w-3 h-3 text-amber-500" />
+                {edu.accreditation}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="flex flex-col items-start md:items-end gap-2 text-sm text-muted-foreground shrink-0">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
+            <Calendar className="w-4 h-4 text-primary" />
+            <span className="font-mono">{edu.period}</span>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
+            <MapPin className="w-4 h-4 text-primary" />
+            <span>{edu.location[language]}</span>
+          </div>
+          {edu.gpa && (
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-mono">
+              <span>GPA: {edu.gpa}</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* What I Learned */}
+      <div className="mb-6 p-5 rounded-xl bg-gradient-to-br from-muted/70 to-muted/30 border border-border/50 group-hover:border-primary/20 transition-colors duration-300">
+        <div className="flex items-center gap-2 mb-4">
+          <BookOpen className="w-4 h-4 text-primary" />
+          <span className="text-sm font-medium">{t('education.learned')}</span>
+        </div>
+        <ul className="space-y-3">
+          {edu.highlights[language].map((item, idx) => (
+            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground group/item">
+              <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-1.5 shrink-0 group-hover/item:scale-150 transition-transform duration-300" />
+              <span className="group-hover/item:text-foreground transition-colors duration-300 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p className="text-sm text-muted-foreground mb-3 font-medium">{t('education.focus')}:</p>
+        <div className="flex flex-wrap gap-2">
+          {edu.focus[language].map((item, idx) => (
+            <span
+              key={idx}
+              className="px-4 py-2 text-sm bg-accent/50 text-accent-foreground rounded-full font-mono hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default hover:scale-105 hover:shadow-md border border-border/50 hover:border-primary"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

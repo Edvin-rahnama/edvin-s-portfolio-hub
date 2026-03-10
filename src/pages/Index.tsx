@@ -15,12 +15,19 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <div className="section-divider" />
         <Experience />
+        <div className="section-divider" />
         <Skills />
+        <div className="section-divider" />
         <Education />
+        <div className="section-divider" />
         <Certifications />
+        <div className="section-divider" />
         <Languages />
+        <div className="section-divider" />
         <Downloads />
+        <div className="section-divider" />
         <Contact />
       </main>
       <Footer />

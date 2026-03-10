@@ -1,5 +1,6 @@
 import { Briefcase, Calendar, MapPin, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const experiences = [
   {
@@ -147,6 +148,7 @@ const experiences = [
 
 export function Experience() {
   const { language, t } = useLanguage();
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal();
 
   return (
     <section id="experience" className="py-24 bg-secondary/30 relative overflow-hidden">
@@ -160,15 +162,15 @@ export function Experience() {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
+          <div ref={sectionRef} className={`text-center mb-16 scroll-reveal ${sectionVisible ? 'visible' : ''}`}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
               <Briefcase className="w-4 h-4" />
               <span>{t('section.career')}</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
               {t('experience.title')}
             </h2>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
               {t('section.career.desc')}
             </p>
           </div>
@@ -179,72 +181,80 @@ export function Experience() {
 
             <div className="space-y-8">
               {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className="relative pl-0 md:pl-20 animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Timeline Dot with enhanced pulse */}
-                  <div className="absolute left-6 top-6 hidden md:flex items-center justify-center">
-                    <div className="w-5 h-5 rounded-full bg-primary shadow-glow animate-glow-pulse" />
-                    <div className="absolute w-8 h-8 rounded-full border-2 border-primary/30 animate-ping" style={{ animationDuration: '3s' }} />
-                  </div>
-
-                  <div className="glass-card rounded-2xl p-6 md:p-8 group hover:shadow-glow transition-all duration-500">
-                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-6">
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-semibold font-display group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
-                          {exp.title[language]}
-                          {!exp.period.end && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-mono">
-                              <Sparkles className="w-3 h-3" />
-                              Current
-                            </span>
-                          )}
-                        </h3>
-                        <p className="text-primary font-medium text-lg mt-1">{exp.company}</p>
-                      </div>
-                      <div className="flex flex-col items-start lg:items-end gap-2 text-sm text-muted-foreground shrink-0">
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
-                          <Calendar className="w-4 h-4 text-primary" />
-                          <span className="font-mono">
-                            {exp.period.start} — {exp.period.end || t('experience.present')}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
-                          <MapPin className="w-4 h-4 text-primary" />
-                          <span>{exp.location[language]}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Tech Stack Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {exp.techStack.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 text-xs font-mono bg-accent/50 text-accent-foreground rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 cursor-default"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <ul className="space-y-3">
-                      {exp.description[language].map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-muted-foreground group/item">
-                          <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-2 shrink-0 group-hover/item:scale-150 transition-transform duration-300 shadow-sm" />
-                          <span className="group-hover/item:text-foreground transition-colors duration-300 leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <ExperienceCard key={index} exp={exp} index={index} language={language} t={t} />
               ))}
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ExperienceCard({ exp, index, language, t }: { exp: typeof experiences[0]; index: number; language: string; t: (key: string) => string }) {
+  const { ref, isVisible } = useScrollReveal();
+
+  return (
+    <div
+      ref={ref}
+      className={`relative pl-0 md:pl-20 scroll-reveal ${isVisible ? 'visible' : ''}`}
+      style={{ transitionDelay: `${index * 0.1}s` }}
+    >
+      {/* Timeline Dot with enhanced pulse */}
+      <div className="absolute left-6 top-6 hidden md:flex items-center justify-center">
+        <div className="w-5 h-5 rounded-full bg-primary shadow-glow animate-glow-pulse" />
+        <div className="absolute w-8 h-8 rounded-full border-2 border-primary/30 animate-ping" style={{ animationDuration: '3s' }} />
+      </div>
+
+      <div className="glass-card rounded-2xl p-6 md:p-8 group hover:shadow-glow transition-all duration-500">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-6">
+          <div>
+            <h3 className="text-xl md:text-2xl font-semibold font-display group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+              {exp.title[language]}
+              {!exp.period.end && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-mono">
+                  <Sparkles className="w-3 h-3" />
+                  Current
+                </span>
+              )}
+            </h3>
+            <p className="text-primary font-medium text-lg mt-1">{exp.company}</p>
+          </div>
+          <div className="flex flex-col items-start lg:items-end gap-2 text-sm text-muted-foreground shrink-0">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
+              <Calendar className="w-4 h-4 text-primary" />
+              <span className="font-mono">
+                {exp.period.start} — {exp.period.end || t('experience.present')}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span>{exp.location[language]}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack Tags */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {exp.techStack.map((tech, idx) => (
+            <span
+              key={idx}
+              className="px-3 py-1 text-xs font-mono bg-accent/50 text-accent-foreground rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 cursor-default"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <ul className="space-y-3">
+          {exp.description[language].map((item, idx) => (
+            <li key={idx} className="flex items-start gap-3 text-muted-foreground group/item">
+              <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-2 shrink-0 group-hover/item:scale-150 transition-transform duration-300 shadow-sm" />
+              <span className="group-hover/item:text-foreground transition-colors duration-300 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

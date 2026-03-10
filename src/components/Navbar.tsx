@@ -49,6 +49,10 @@ export function Navbar() {
           {/* Logo */}
           <a
             href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="text-xl font-bold font-display text-gradient hover:scale-105 transition-transform duration-300"
           >
             ER
