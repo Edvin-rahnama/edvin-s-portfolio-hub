@@ -1,5 +1,6 @@
 import { Award, ExternalLink, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const certifications = [
   { name: 'Introduction to LLMs in Python', category: 'AI/ML', issuer: 'DataCamp' },
@@ -24,6 +25,7 @@ const categoryColors: Record<string, { bg: string; text: string; border: string 
 
 export function Certifications() {
   const { t } = useLanguage();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <section id="certifications" className="py-24 relative overflow-hidden">
@@ -36,58 +38,63 @@ export function Certifications() {
       <div className="absolute bottom-32 right-32 w-6 h-6 bg-primary/10 rounded-full hidden lg:block animate-float" style={{ animationDelay: '1.5s' }} />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 animate-fade-in border border-primary/20">
+        <div ref={headerRef} className={`text-center mb-16 scroll-reveal ${headerVisible ? 'visible' : ''}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
             <Award className="w-4 h-4" />
             <span>{t('section.development')}</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
             {t('certifications.title')}
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             {t('section.development.desc')}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {certifications.map((cert, index) => {
-            const colors = categoryColors[cert.category] || { bg: 'bg-muted', text: 'text-muted-foreground', border: 'border-border' };
-            
-            return (
-              <div
-                key={index}
-                className="glass-card rounded-xl p-5 animate-scale-in group relative overflow-hidden hover:shadow-glow transition-all duration-500"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                {/* Decorative corner */}
-                <div className={`absolute top-0 right-0 w-16 h-16 ${colors.bg} rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-300`} />
-                
-                <div className="relative">
-                  <div className="flex items-start gap-3 mb-4">
-                    <div className={`p-2.5 rounded-xl ${colors.bg} shrink-0 group-hover:scale-110 transition-all duration-300`}>
-                      <Award className={`w-4 h-4 ${colors.text}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium mb-1 leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
-                        {cert.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" />
-                        {cert.issuer}
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    className={`inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full font-mono ${colors.bg} ${colors.text} border ${colors.border} transition-all duration-300 hover:scale-105`}
-                  >
-                    {cert.category}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+          {certifications.map((cert, index) => (
+            <CertCard key={index} cert={cert} index={index} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function CertCard({ cert, index }: { cert: typeof certifications[0]; index: number }) {
+  const { ref, isVisible } = useScrollReveal();
+  const colors = categoryColors[cert.category] || { bg: 'bg-muted', text: 'text-muted-foreground', border: 'border-border' };
+
+  return (
+    <div
+      ref={ref}
+      className={`glass-card rounded-xl p-5 group relative overflow-hidden hover:shadow-glow transition-all duration-500 scroll-reveal ${isVisible ? 'visible' : ''}`}
+      style={{ transitionDelay: `${index * 0.05}s` }}
+    >
+      {/* Decorative corner */}
+      <div className={`absolute top-0 right-0 w-16 h-16 ${colors.bg} rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-300`} />
+      
+      <div className="relative">
+        <div className="flex items-start gap-3 mb-4">
+          <div className={`p-2.5 rounded-xl ${colors.bg} shrink-0 group-hover:scale-110 transition-all duration-300`}>
+            <Award className={`w-4 h-4 ${colors.text}`} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-medium mb-1 leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
+              {cert.name}
+            </h3>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <Sparkles className="w-3 h-3" />
+              {cert.issuer}
+            </p>
+          </div>
+        </div>
+        <span
+          className={`inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full font-mono ${colors.bg} ${colors.text} border ${colors.border} transition-all duration-300 hover:scale-105`}
+        >
+          {cert.category}
+        </span>
+      </div>
+    </div>
   );
 }

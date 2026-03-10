@@ -62,8 +62,10 @@ export function Hero() {
               </div>
 
               <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
-                <h2 className="text-xl md:text-2xl text-muted-foreground font-medium mb-6">
-                  {t('hero.role')}
+                <h2 className="text-xl md:text-2xl text-muted-foreground font-medium mb-6 flex lg:justify-start justify-center">
+                  <span className="animate-typing inline-block">
+                    {t('hero.role')}
+                  </span>
                 </h2>
               </div>
 
