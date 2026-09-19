@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta name="robots" content="noindex" />
     <script>
-      sessionStorage.redirect = location.href;
+      // Stash the requested URL so index.html can restore it, then bounce to the
+      // site root. This previously hard-coded '/edvin-s-portfolio-hub/', which is
+      // the GitHub Pages *project* path — the site is served from the custom
+      // domain edvin-rahnama.space, where that path 404s and the fallback looped.
+      sessionStorage.setItem('redirect', location.href);
+      location.replace('/');
     </script>
-    <meta http-equiv="refresh" content="0;URL='/edvin-s-portfolio-hub/'"></meta>
+    <meta http-equiv="refresh" content="0;URL='/'" />
   </head>
   <body>
+    <p>Redirecting to <a href="/">edvin-rahnama.space</a>…</p>
   </body>
 </html>
