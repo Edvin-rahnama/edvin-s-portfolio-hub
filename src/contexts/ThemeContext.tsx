@@ -17,7 +17,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem('theme');
     if (saved) return saved as Theme;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Dark unconditionally on a first visit. Keying off prefers-color-scheme
+    // does not work here: the media query resolves to `light` when the visitor
+    // has expressed no preference at all, so almost everyone landed on the pale
+    // variant. Dark is the treatment this page is designed for; the navbar
+    // toggle remains and the choice is remembered.
+    return 'dark';
   });
 
   const [colorTheme, setColorTheme] = useState<ColorTheme>(() => {

@@ -5,8 +5,13 @@ interface UseScrollRevealOptions {
   rootMargin?: string;
 }
 
-export function useScrollReveal({ threshold = 0.1, rootMargin = '0px 0px -50px 0px' }: UseScrollRevealOptions = {}) {
-  const ref = useRef<HTMLDivElement>(null);
+// Generic in the element type so the ref can attach to a <ul>, <section> or
+// anything else, not just a <div>.
+export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
+  threshold = 0.1,
+  rootMargin = '0px 0px -50px 0px',
+}: UseScrollRevealOptions = {}) {
+  const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

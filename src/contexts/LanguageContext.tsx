@@ -97,7 +97,7 @@ const translations = {
     'languages.english': 'English',
     'languages.german': 'German',
     'languages.turkish': 'Turkish',
-    'languages.persian': 'Persian (Native)',
+    'languages.persian': 'Persian',
 
     // Footer
     'footer.rights': 'All rights reserved.',
@@ -195,7 +195,7 @@ const translations = {
     'languages.english': 'Englisch',
     'languages.german': 'Deutsch',
     'languages.turkish': 'Türkisch',
-    'languages.persian': 'Persisch (Muttersprache)',
+    'languages.persian': 'Persisch',
 
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
@@ -276,7 +276,7 @@ const translations = {
     'languages.english': 'Inglés',
     'languages.german': 'Alemán',
     'languages.turkish': 'Turco',
-    'languages.persian': 'Persa (Nativo)',
+    'languages.persian': 'Persa',
 
     // Footer
     'footer.rights': 'Todos los derechos reservados.',

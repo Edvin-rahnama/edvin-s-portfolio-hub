@@ -1,5 +1,6 @@
 import { ArrowDown, Download, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { FieldCanvas } from '@/components/FieldCanvas';
 import profileImage from '@/assets/profile.jpg';
 
 export function Hero() {
@@ -20,6 +21,7 @@ export function Hero() {
           floating dots, rotated squares — which is the visual signature of a
           generated template rather than a considered design. */}
       <div className="absolute inset-0 bg-grid-fade" aria-hidden="true" />
+      <FieldCanvas className="absolute inset-0 h-full w-full [mask-image:radial-gradient(ellipse_75%_70%_at_60%_45%,#000_20%,transparent_75%)]" />
       <div
         className="absolute inset-0 bg-[radial-gradient(120%_90%_at_80%_0%,hsl(var(--primary)/0.16),transparent_60%)]"
         aria-hidden="true"
@@ -97,6 +99,14 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Names the background so it reads as subject matter rather than decoration. */}
+      {/* Not uppercased: it would render "PINNs" as "PINNS" and lose the acronym. */}
+      <p className="absolute bottom-10 left-4 z-10 hidden max-w-[15rem] font-mono text-[11px] leading-relaxed tracking-tight text-muted-foreground/70 xl:left-8 xl:block">
+        <span className="text-primary/70">/ </span>
+        travelling-wave PDE solution — the class of system PINNs are trained to
+        approximate
+      </p>
 
       <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 lg:block">
         <a
