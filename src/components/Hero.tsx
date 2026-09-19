@@ -21,6 +21,12 @@ export function Hero() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-hero-gradient" />
+      {/* Fades the hero tint into the page colour so the section boundary isn't a
+          hard horizontal seam behind the stats band that overlaps it. */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background"
+        aria-hidden="true"
+      />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
       

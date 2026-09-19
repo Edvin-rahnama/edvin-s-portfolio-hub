@@ -9,24 +9,28 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 20% 10%;
+    /* Page sits a shade below pure white so that white cards read as raised
+       surfaces. Previously --background and --card were both 0 0% 100%, which
+       left every card edgeless and floating. */
+    --background: 210 25% 98%;
+    --foreground: 222 32% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
+    --card-foreground: 222 32% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
+    --popover-foreground: 222 32% 11%;
 
     --primary: 174 70% 40%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 174 70% 50%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 20%;
+    --secondary: 215 22% 94%;
+    --secondary-foreground: 222 30% 22%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 215 22% 94%;
+    /* Was 40% lightness — lifted contrast for body copy and skill chips */
+    --muted-foreground: 220 13% 37%;
 
     --accent: 174 70% 95%;
     --accent-foreground: 174 70% 30%;
@@ -34,8 +38,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 218 17% 87%;
+    --input: 218 17% 87%;
     --ring: 174 70% 40%;
 
     --radius: 0.75rem;
@@ -44,9 +48,11 @@
     --gradient-hero: linear-gradient(135deg, hsl(174 70% 40% / 0.1), hsl(200 80% 50% / 0.05));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 14% 98%));
     --gradient-accent: linear-gradient(135deg, hsl(174 70% 40%), hsl(200 80% 50%));
-    --shadow-soft: 0 4px 20px -4px hsl(220 20% 10% / 0.08);
-    --shadow-glow: 0 0 40px hsl(174 70% 40% / 0.15);
-    --shadow-card: 0 10px 40px -10px hsl(220 20% 10% / 0.1);
+    /* Layered: a tight contact shadow plus a wide ambient one reads as real
+       elevation, where a single soft blur just looked like haze. */
+    --shadow-soft: 0 1px 2px hsl(222 30% 12% / 0.06), 0 6px 20px -6px hsl(222 30% 12% / 0.10);
+    --shadow-glow: 0 0 40px hsl(174 70% 40% / 0.18);
+    --shadow-card: 0 1px 2px hsl(222 30% 12% / 0.05), 0 12px 32px -12px hsl(222 30% 12% / 0.16);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -59,24 +65,26 @@
   }
 
   .dark {
-    --background: 222 47% 6%;
+    /* Card sits clearly above the page instead of 2% apart, so sections read as
+       stacked surfaces rather than one flat field. */
+    --background: 222 47% 5%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 8%;
+    --card: 222 38% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 8%;
+    --popover: 222 38% 10%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 174 70% 45%;
     --primary-foreground: 222 47% 6%;
     --primary-glow: 174 70% 55%;
 
-    --secondary: 222 47% 12%;
+    --secondary: 222 34% 15%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 222 34% 15%;
+    --muted-foreground: 215 22% 70%;
 
     --accent: 174 70% 15%;
     --accent-foreground: 174 70% 70%;
@@ -84,16 +92,16 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 222 47% 15%;
-    --input: 222 47% 15%;
+    --border: 222 28% 19%;
+    --input: 222 28% 19%;
     --ring: 174 70% 45%;
 
     --gradient-hero: linear-gradient(135deg, hsl(174 70% 45% / 0.15), hsl(200 80% 50% / 0.08));
     --gradient-card: linear-gradient(145deg, hsl(222 47% 10%), hsl(222 47% 8%));
     --gradient-accent: linear-gradient(135deg, hsl(174 70% 45%), hsl(200 80% 55%));
-    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
-    --shadow-glow: 0 0 60px hsl(174 70% 45% / 0.2);
-    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.4);
+    --shadow-soft: 0 1px 2px hsl(0 0% 0% / 0.4), 0 6px 20px -6px hsl(0 0% 0% / 0.45);
+    --shadow-glow: 0 0 60px hsl(174 70% 45% / 0.22);
+    --shadow-card: 0 1px 2px hsl(0 0% 0% / 0.4), 0 14px 36px -14px hsl(0 0% 0% / 0.6);
 
     --sidebar-background: 222 47% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -304,12 +312,16 @@
     @apply backdrop-blur-xl bg-background/80 border border-border/50;
   }
 
+  /* Border was at 40% opacity over a near-white page, so cards had no visible
+     edge and read as floating text. Full-strength border + real elevation. */
   .glass-card {
-    @apply backdrop-blur-lg bg-card/90 border border-border/40 shadow-card transition-all duration-300;
+    @apply bg-card border border-border shadow-card;
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .glass-card:hover {
-    @apply shadow-glow border-primary/30;
+    @apply shadow-glow border-primary/40;
     transform: translateY(-4px);
   }
 

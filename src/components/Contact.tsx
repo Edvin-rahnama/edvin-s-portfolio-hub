@@ -1,28 +1,19 @@
-import { Mail, Linkedin, Github, ExternalLink, MessageCircle } from 'lucide-react';
+import { Mail, Linkedin, Github, ExternalLink, MessageCircle, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { Button } from '@/components/ui/button';
 
-const contactLinks = [
-  {
-    key: 'contact.email',
-    icon: Mail,
-    label: 'amirhossein.rahnama@outlook.com',
-    href: 'mailto:amirhossein.rahnama@outlook.com',
-  },
+const EMAIL = 'amirhossein.rahnama@outlook.com';
+
+const secondaryLinks = [
   {
     key: 'contact.linkedin',
     icon: Linkedin,
-    label: 'LinkedIn Profile',
     href: 'https://www.linkedin.com/in/edvin-rahnama-908b1b179/',
-    external: true,
   },
   {
     key: 'contact.github',
     icon: Github,
-    label: 'GitHub Profile',
     href: 'https://github.com/amirhossein-rahnama',
-    external: true,
   },
 ];
 
@@ -32,56 +23,63 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Background decorations */}
       <div className="absolute top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-full blur-3xl" />
-      
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-20 w-3 h-3 bg-primary/30 rounded-full hidden lg:block animate-float" />
-      <div className="absolute bottom-20 right-32 w-4 h-4 bg-primary/20 rounded-full hidden lg:block animate-bounce-subtle" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/3 right-20 w-px h-24 bg-gradient-to-b from-transparent via-primary/20 to-transparent hidden lg:block" />
+      <div
+        className="absolute bottom-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"
+        style={{ animationDelay: '2s' }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div ref={ref} className={`max-w-3xl mx-auto scroll-reveal ${isVisible ? 'visible' : ''}`}>
-          {/* Glass card wrapper for depth */}
           <div className="glass-card rounded-3xl p-8 md:p-12 text-center">
+            {/* Eyebrow used to repeat contact.title verbatim, so the words
+                "Get in Touch" appeared twice, stacked. */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-6 border border-primary/20">
-              <MessageCircle className="w-4 h-4" />
-              <span>{t('contact.title')}</span>
+              <MessageCircle className="w-4 h-4" aria-hidden="true" />
+              <span>{t('contact.eyebrow')}</span>
             </div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-balance">
               {t('contact.title')}
             </h2>
-            <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-9 max-w-xl mx-auto leading-relaxed text-pretty">
               {t('contact.subtitle')}
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              {contactLinks.map((link, index) => {
-                const Icon = link.icon;
-                return (
-                  <Button
-                    key={link.key}
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="rounded-full h-auto py-4 px-6 hover:scale-105 hover:shadow-glow hover:border-primary/50 transition-all duration-300 group"
-                  >
-                    <a
-                      href={link.href}
-                      target={link.external ? '_blank' : undefined}
-                      rel={link.external ? 'noopener noreferrer' : undefined}
-                    >
-                      <Icon className="w-5 h-5 mr-3 text-primary group-hover:scale-110 transition-transform duration-300" />
-                      <span className="text-sm font-medium">{link.label}</span>
-                      {link.external && <ExternalLink className="w-4 h-4 ml-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />}
-                    </a>
-                  </Button>
-                );
-              })}
+            {/* One primary action. Previously all three links were identical
+                outline pills, which wrapped 2 + 1 and orphaned GitHub on its
+                own row with nothing to signal the preferred route. */}
+            <a
+              href={`mailto:${EMAIL}`}
+              className="group inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-primary px-7 py-4 font-medium text-primary-foreground shadow-glow transition-[transform,box-shadow,background-color] duration-300 hover:scale-[1.02] hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              <Mail className="h-5 w-5 shrink-0 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+              <span className="truncate font-mono text-sm">{EMAIL}</span>
+            </a>
+
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {secondaryLinks.map(({ key, icon: Icon, href }) => (
+                <a
+                  key={key}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-border bg-card px-6 py-3.5 font-medium transition-[transform,border-color,background-color] duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+                  <span className="text-sm">{t(key)}</span>
+                  <ExternalLink
+                    className="h-3.5 w-3.5 opacity-40 transition-opacity duration-300 group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+                </a>
+              ))}
             </div>
+
+            <p className="mt-8 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              <span className="text-pretty">{t('contact.availability')}</span>
+            </p>
           </div>
         </div>
       </div>

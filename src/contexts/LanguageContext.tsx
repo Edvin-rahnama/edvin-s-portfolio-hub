@@ -85,6 +85,9 @@ const translations = {
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
+    'contact.eyebrow': 'Contact',
+    'contact.cta': 'Email me',
+    'contact.availability': 'Based in Kiel, Germany — open to roles across Germany and remote EU.',
 
     // Languages
     'languages.title': 'Languages',
@@ -177,6 +180,9 @@ const translations = {
     'contact.email': 'E-Mail',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
+    'contact.eyebrow': 'Kontakt',
+    'contact.cta': 'Schreiben Sie mir',
+    'contact.availability': 'Ansässig in Kiel — offen für Stellen in ganz Deutschland und Remote-EU.',
 
     // Languages
     'languages.title': 'Sprachen',
