@@ -17,10 +17,10 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter
-            basename={import.meta.env.BASE_URL}
-            future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-          >
+          {/* v7_startTransition / v7_relativeSplatPath were opt-in flags on
+              React Router 6; both are standard behaviour on 7, so the flags are
+              no longer passed. */}
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="*" element={<NotFound />} />
