@@ -1,6 +1,7 @@
 import { Briefcase, Calendar, MapPin, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeading } from '@/components/SectionHeading';
 
 /**
  * Bullets are authored as "Topic: detail". Emphasising the topic turns a wall of
@@ -169,27 +170,18 @@ export function Experience() {
   return (
     <section id="experience" className="py-24 bg-secondary/30 relative overflow-hidden">
       {/* Enhanced background decorations */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
       
       {/* Decorative grid pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <div ref={sectionRef} className={`text-center mb-16 scroll-reveal ${sectionVisible ? 'visible' : ''}`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
-              <Briefcase className="w-4 h-4" />
-              <span>{t('section.career')}</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
-              {t('experience.title')}
-            </h2>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              {t('section.career.desc')}
-            </p>
-          </div>
+          <SectionHeading
+            index="01"
+            label={t('section.career')}
+            title={t('experience.title')}
+            description={t('section.career.desc')}
+          />
 
           <div className="relative">
             {/* Timeline Line with animated gradient */}

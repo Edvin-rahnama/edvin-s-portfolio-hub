@@ -23,26 +23,22 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div
-        className="absolute bottom-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"
-        style={{ animationDelay: '2s' }}
-      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div ref={ref} className={`max-w-3xl mx-auto scroll-reveal ${isVisible ? 'visible' : ''}`}>
           <div className="glass-card rounded-3xl p-8 md:p-12 text-center">
-            {/* Eyebrow used to repeat contact.title verbatim, so the words
-                "Get in Touch" appeared twice, stacked. */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-6 border border-primary/20">
-              <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              <span>{t('contact.eyebrow')}</span>
+            <div className="mb-5 flex items-center justify-center gap-4">
+              <span className="font-mono text-sm font-medium tabular-nums text-primary">07</span>
+              <span className="h-px w-10 bg-primary/40" aria-hidden="true" />
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {t('contact.eyebrow')}
+              </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-balance">
+            <h2 className="mb-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance md:text-5xl">
               {t('contact.title')}
             </h2>
-            <p className="text-lg text-muted-foreground mb-9 max-w-xl mx-auto leading-relaxed text-pretty">
+            <p className="mx-auto mb-9 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
               {t('contact.subtitle')}
             </p>
 

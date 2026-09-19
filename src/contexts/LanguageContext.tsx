@@ -77,6 +77,8 @@ const translations = {
     'downloads.certifications.desc': 'Download all my professional certifications from DataCamp, SAP, and more.',
     'downloads.recommendations': 'Letters of Recommendation',
     'downloads.recommendations.desc': 'Download recommendation letters from previous employers and academic institutions.',
+    'downloads.eyebrow': 'Documents',
+    'downloads.subtitle': 'CVs, certificates and references, ready to download.',
     'downloads.button': 'Download',
 
     // Contact
@@ -172,6 +174,8 @@ const translations = {
     'downloads.certifications.desc': 'Laden Sie alle meine beruflichen Zertifikate von DataCamp, SAP und mehr herunter.',
     'downloads.recommendations': 'Empfehlungsschreiben',
     'downloads.recommendations.desc': 'Laden Sie Empfehlungsschreiben von früheren Arbeitgebern und akademischen Institutionen herunter.',
+    'downloads.eyebrow': 'Dokumente',
+    'downloads.subtitle': 'Lebensläufe, Zertifikate und Referenzen zum Download.',
     'downloads.button': 'Herunterladen',
 
     // Contact

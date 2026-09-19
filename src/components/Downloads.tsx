@@ -1,6 +1,7 @@
 import { Download, FileText, Award, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeading } from '@/components/SectionHeading';
 import { Button } from '@/components/ui/button';
 
 const rawDownloads = [
@@ -38,19 +39,17 @@ export function Downloads() {
   return (
     <section id="downloads" className="py-24 bg-secondary/30 relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div ref={headerRef} className={`text-center mb-16 scroll-reveal ${headerVisible ? 'visible' : ''}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
-            <Download className="w-4 h-4" />
-            <span>{t('downloads.title')}</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
-            {t('downloads.title')}
-          </h2>
-        </div>
+        {/* Eyebrow and heading both rendered downloads.title, so the same word
+            appeared twice stacked — the same duplication the contact block had. */}
+        <SectionHeading
+          className="max-w-4xl mx-auto"
+          index="06"
+          label={t('downloads.eyebrow')}
+          title={t('downloads.title')}
+          description={t('downloads.subtitle')}
+        />
 
         <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
           {rawDownloads.map((item, index) => (

@@ -1,6 +1,7 @@
 import { Code2, Cloud, Globe, BarChart3, Users, Cpu } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeading } from '@/components/SectionHeading';
 
 /** `core` marks the skills worth leading with, so a recruiter's eye lands on
  *  Python and AWS rather than on "Patience". Everything else stays secondary. */
@@ -117,29 +118,18 @@ const skillCategories: Category[] = [
 
 export function Skills() {
   const { language, t } = useLanguage();
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div
-        className="absolute bottom-1/4 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"
-        style={{ animationDelay: '2s' }}
-      />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div ref={headerRef} className={`text-center mb-14 scroll-reveal ${headerVisible ? 'visible' : ''}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
-            <Cpu className="w-4 h-4" aria-hidden="true" />
-            <span>{t('section.expertise')}</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display text-balance">
-            {t('skills.title')}
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-pretty">
-            {t('section.expertise.desc')}
-          </p>
-        </div>
+        <SectionHeading
+          className="max-w-6xl mx-auto"
+          index="02"
+          label={t('section.expertise')}
+          title={t('skills.title')}
+          description={t('section.expertise.desc')}
+        />
 
         {/* items-start stops short cards being stretched to the tallest in the
             row, which previously left large dead areas inside the boxes. */}

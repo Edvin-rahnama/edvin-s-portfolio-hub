@@ -318,6 +318,16 @@
     @apply backdrop-blur-xl bg-background/80 border border-border/50;
   }
 
+  /* Fine technical grid, faded out towards the edges. Replaces the blurred
+     decorative orbs that previously filled every section background. */
+  .bg-grid-fade {
+    background-image: linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
+  }
+
   /* Border was at 40% opacity over a near-white page, so cards had no visible
      edge and read as floating text. Full-strength border + real elevation. */
   .glass-card {

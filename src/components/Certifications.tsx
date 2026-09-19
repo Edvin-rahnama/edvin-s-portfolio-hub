@@ -1,6 +1,7 @@
 import { Award, ExternalLink, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeading } from '@/components/SectionHeading';
 
 const certifications = [
   { name: 'Introduction to LLMs in Python', category: 'AI/ML', issuer: 'DataCamp' },
@@ -25,31 +26,21 @@ const categoryColors: Record<string, { bg: string; text: string; border: string 
 
 export function Certifications() {
   const { t } = useLanguage();
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <section id="certifications" className="py-24 relative overflow-hidden">
       {/* Enhanced background decorations */}
-      <div className="absolute top-1/3 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-1/3 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
       
       {/* Decorative badges */}
-      <div className="absolute top-24 left-24 w-8 h-8 border-2 border-primary/15 rounded-full hidden lg:block animate-bounce-subtle" />
-      <div className="absolute bottom-32 right-32 w-6 h-6 bg-primary/10 rounded-full hidden lg:block animate-float" style={{ animationDelay: '1.5s' }} />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div ref={headerRef} className={`text-center mb-16 scroll-reveal ${headerVisible ? 'visible' : ''}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
-            <Award className="w-4 h-4" />
-            <span>{t('section.development')}</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
-            {t('certifications.title')}
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            {t('section.development.desc')}
-          </p>
-        </div>
+        <SectionHeading
+          className="max-w-6xl mx-auto"
+          index="04"
+          label={t('section.development')}
+          title={t('certifications.title')}
+          description={t('section.development.desc')}
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {certifications.map((cert, index) => (

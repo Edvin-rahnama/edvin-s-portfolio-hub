@@ -1,6 +1,7 @@
 import { GraduationCap, Calendar, MapPin, BookOpen, Award, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeading } from '@/components/SectionHeading';
 
 const education = [
   {
@@ -80,32 +81,22 @@ const education = [
 
 export function Education() {
   const { language, t } = useLanguage();
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
 
   return (
     <section id="education" className="py-24 bg-secondary/30 relative overflow-hidden">
       {/* Enhanced background decorations */}
-      <div className="absolute top-10 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-10 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 right-0 w-48 h-48 bg-gradient-to-l from-primary/10 to-transparent rounded-full blur-2xl" />
       
       {/* Decorative academic elements */}
-      <div className="absolute top-32 right-32 w-20 h-20 border border-primary/10 rounded-full hidden lg:block animate-float" style={{ animationDelay: '1s' }} />
       <div className="absolute bottom-40 left-16 w-12 h-12 border-2 border-primary/10 rotate-45 hidden lg:block" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div ref={headerRef} className={`text-center mb-16 scroll-reveal ${headerVisible ? 'visible' : ''}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-mono mb-4 border border-primary/20">
-            <GraduationCap className="w-4 h-4" />
-            <span>{t('section.academic')}</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display">
-            {t('education.title')}
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            {t('section.academic.desc')}
-          </p>
-        </div>
+        <SectionHeading
+          className="max-w-4xl mx-auto"
+          index="03"
+          label={t('section.academic')}
+          title={t('education.title')}
+          description={t('section.academic.desc')}
+        />
 
         <div className="max-w-4xl mx-auto grid gap-8">
           {education.map((edu, index) => (
