@@ -48,6 +48,51 @@
     />
     <meta name="twitter:image" content="https://edvin-rahnama.space/og-image.png" />
 
+    <!-- Structured data: lets search engines render this as a person with a
+         job title, employer and verified profiles rather than an untyped page. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Edvin Rahnama",
+        "jobTitle": "Data Scientist & Software Engineer",
+        "url": "https://edvin-rahnama.space/",
+        "email": "mailto:amirhossein.rahnama@outlook.com",
+        "image": "https://edvin-rahnama.space/og-image.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kiel",
+          "addressCountry": "DE"
+        },
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Kiel University of Applied Sciences"
+          },
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Eastern Mediterranean University"
+          }
+        ],
+        "worksFor": { "@type": "Organization", "name": "t2consult" },
+        "knowsLanguage": ["en", "de", "tr", "fa"],
+        "knowsAbout": [
+          "Machine Learning",
+          "MLOps",
+          "Physics-Informed Neural Networks",
+          "Data Engineering",
+          "Python",
+          "AWS",
+          "Docker",
+          "Kubernetes"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/edvin-rahnama-908b1b179/",
+          "https://github.com/amirhossein-rahnama"
+        ]
+      }
+    </script>
+
     <script>
       (function () {
         var redirect = sessionStorage.getItem('redirect');

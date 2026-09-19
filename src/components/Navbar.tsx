@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun, Globe, Palette } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useActiveSection } from '@/hooks/useActiveSection';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -11,6 +12,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
+
+const SECTION_IDS = [
+  'about',
+  'experience',
+  'skills',
+  'education',
+  'certifications',
+  'languages',
+  'downloads',
+  'contact',
+];
 
 const navItems = [
   { key: 'nav.about', href: '#about' },
@@ -28,6 +40,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const { theme, colorTheme, toggleTheme, setColorTheme } = useTheme();
+  const activeSection = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,16 +74,23 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <a
-                key={item.key}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                {t(item.key)}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = `#${activeSection}` === item.href;
+              return (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={`relative rounded-sm text-sm font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:origin-right after:bg-primary after:transition-transform after:duration-300 hover:text-primary hover:after:origin-left hover:after:scale-x-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background ${
+                    isActive
+                      ? 'text-primary after:scale-x-100'
+                      : 'text-muted-foreground after:scale-x-0'
+                  }`}
+                >
+                  {t(item.key)}
+                </a>
+              );
+            })}
           </div>
 
           {/* Controls */}
@@ -178,16 +198,24 @@ export function Navbar() {
         {isMobileMenuOpen && (
           <div id="mobile-menu" className="lg:hidden mt-4 py-4 border-t border-border animate-fade-in bg-background/95 backdrop-blur-md rounded-lg shadow-lg">
             <div className="flex flex-col gap-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t(item.key)}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const isActive = `#${activeSection}` === item.href;
+                return (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:bg-primary/10 hover:text-primary ${
+                      isActive
+                        ? 'bg-primary/10 text-primary border-l-2 border-primary'
+                        : 'text-foreground'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {t(item.key)}
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}

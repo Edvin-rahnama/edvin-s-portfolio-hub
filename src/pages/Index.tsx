@@ -13,8 +13,16 @@ import { Footer } from '@/components/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Keyboard users would otherwise tab through all eight nav links, three
+          control menus and the menu toggle before reaching any content. */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-primary-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+      >
+        Skip to content
+      </a>
       <Navbar />
-      <main>
+      <main id="main">
         <Hero />
         <Stats />
         <div className="section-divider" />

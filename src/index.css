@@ -227,6 +227,12 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* The navbar is fixed, so an anchor jump would otherwise park the section
+     heading underneath it. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 @layer utilities {
