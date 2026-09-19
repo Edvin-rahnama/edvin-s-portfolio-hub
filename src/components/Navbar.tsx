@@ -110,16 +110,19 @@ export function Navbar() {
               <DropdownMenuContent align="end" className="animate-scale-in">
                 <DropdownMenuLabel>Color Theme</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                {/* Swatches are hardcoded, so they must track the tokens in
+                    index.css. Default moved teal -> indigo and `blue` was
+                    retuned to cyan to stay distinct from it. */}
                 <DropdownMenuItem onClick={() => setColorTheme('default')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded-full bg-[hsl(174,70%,40%)]" />
-                    Teal {colorTheme === 'default' && '✓'}
+                    <div className="w-4 h-4 rounded-full bg-[hsl(226,82%,62%)]" />
+                    Indigo {colorTheme === 'default' && '✓'}
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setColorTheme('blue')} className="cursor-pointer hover:bg-primary/10">
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded-full bg-[hsl(217,91%,60%)]" />
-                    Blue {colorTheme === 'blue' && '✓'}
+                    <div className="w-4 h-4 rounded-full bg-[hsl(189,90%,55%)]" />
+                    Cyan {colorTheme === 'blue' && '✓'}
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setColorTheme('emerald')} className="cursor-pointer hover:bg-primary/10">

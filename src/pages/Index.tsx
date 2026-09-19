@@ -9,8 +9,11 @@ import { Downloads } from '@/components/Downloads';
 import { Languages } from '@/components/Languages';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { usePointerSpotlight } from '@/hooks/usePointerSpotlight';
 
 const Index = () => {
+  usePointerSpotlight();
+
   return (
     <div className="grain min-h-screen bg-background">
       {/* Keyboard users would otherwise tab through all eight nav links, three

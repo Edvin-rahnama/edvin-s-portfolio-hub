@@ -1,6 +1,7 @@
 import { Briefcase, Calendar, MapPin, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useActiveIndex } from '@/hooks/useActiveSection';
 import { SectionHeading } from '@/components/SectionHeading';
 
 /**
@@ -21,6 +22,7 @@ const experiences = [
   {
     title: { en: 'Data Scientist (Master Thesis)', de: 'Data Scientist (Masterarbeit)', es: 'Científico de Datos (Tesis de Maestría)' },
     company: 'Helmholtz-Zentrum Hereon',
+    short: 'Hereon',
     location: { en: 'Geesthacht, Germany', de: 'Geesthacht, Deutschland', es: 'Geesthacht, Alemania' },
     // Thesis concluded Jul 2026 (per CV). Was `end: null`, which rendered
     // "Present" and kept a "Current" badge on a finished engagement.
@@ -47,6 +49,7 @@ const experiences = [
   {
     title: { en: 'IT Systems & Automation Engineer', de: 'IT Systems & Automation Engineer', es: 'Ingeniero de Sistemas TI y Automatización' },
     company: 't2consult',
+    short: 't2consult',
     location: { en: 'Preetz, Germany', de: 'Preetz, Deutschland', es: 'Preetz, Alemania' },
     period: { start: '04/2025', end: null },
     techStack: ['Python', 'AWS', 'n8n', 'Flyway', 'Docker', 'JavaScript', 'Lambda', 'Redshift'],
@@ -77,6 +80,7 @@ const experiences = [
   {
     title: { en: 'NLP & Recommender Systems Engineer', de: 'NLP & Recommender Systems Engineer', es: 'Ingeniero de NLP y Sistemas de Recomendación' },
     company: '80s80s Radio GmbH & Co. KG',
+    short: '80s80s',
     location: { en: 'Kiel, Germany', de: 'Kiel, Deutschland', es: 'Kiel, Alemania' },
     period: { start: '08/2023', end: '01/2024' },
     techStack: ['Python', 'NLP', 'LLMs', 'Spotify API', 'Musixmatch API', 'Scikit-learn', 'Pandas'],
@@ -101,6 +105,7 @@ const experiences = [
   {
     title: { en: 'Business Intelligence Analyst (Real Estate)', de: 'Business Intelligence Analyst (Immobilien)', es: 'Analista de Inteligencia de Negocios (Inmobiliaria)' },
     company: 'Satrap Investment Group Co.',
+    short: 'Satrap',
     location: { en: 'Famagusta, Cyprus', de: 'Famagusta, Zypern', es: 'Famagusta, Chipre' },
     period: { start: '07/2019', end: '11/2022' },
     techStack: ['Python', 'Scikit-learn', 'Pandas', 'SQL', 'Predictive Modeling', 'Time-Series'],
@@ -122,6 +127,7 @@ const experiences = [
   {
     title: { en: 'System Administrator (Working Student)', de: 'Systemadministrator (Werkstudent)', es: 'Administrador de Sistemas (Estudiante)' },
     company: 'Eastern Mediterranean University',
+    short: 'EMU',
     location: { en: 'Famagusta, Cyprus', de: 'Famagusta, Zypern', es: 'Famagusta, Chipre' },
     period: { start: '07/2019', end: '07/2021' },
     techStack: ['System Administration', 'Network Diagnostics', 'Linux', 'Windows', 'Troubleshooting'],
@@ -143,6 +149,7 @@ const experiences = [
   {
     title: { en: 'Junior Full Stack Developer', de: 'Junior Full Stack Developer', es: 'Desarrollador Full Stack Junior' },
     company: 'Ratin Company',
+    short: 'Ratin',
     location: { en: 'Tehran, Iran', de: 'Teheran, Iran', es: 'Teherán, Irán' },
     period: { start: '01/2017', end: '05/2019' },
     techStack: ['JavaScript', 'Node.js', 'Vue.js', 'PHP', 'SQL', 'MySQL', 'REST APIs'],
@@ -165,17 +172,17 @@ const experiences = [
 
 export function Experience() {
   const { language, t } = useLanguage();
-  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal();
+  const { index: activeIndex, setRef: setCardRef } = useActiveIndex(experiences.length);
 
   return (
-    <section id="experience" className="py-24 bg-secondary/30 relative overflow-hidden">
+    <section id="experience" className="py-32 bg-secondary/30 relative">
       {/* Enhanced background decorations */}
       
       {/* Decorative grid pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <SectionHeading
             index="01"
             label={t('section.career')}
@@ -183,14 +190,70 @@ export function Experience() {
             description={t('section.career.desc')}
           />
 
-          <div className="relative">
-            {/* Timeline Line with animated gradient */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block" />
+          {/* Sticky year rail. This is the longest section on the page by a wide
+              margin, and previously gave no sense of position while scrolling
+              through it. The rail holds at the top of the viewport and marks the
+              entry currently under the reading line. */}
+          <div className="grid gap-x-10 lg:grid-cols-[7rem_1fr]">
+            <div className="hidden lg:block">
+              <ul className="sticky top-28 space-y-3 border-l border-border pl-5">
+                {experiences.map((exp, i) => (
+                  <li key={exp.company}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        document
+                          .getElementById(`exp-${i}`)
+                          ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                      }
+                      aria-current={i === activeIndex ? 'true' : undefined}
+                      className={`relative -ml-[1.4rem] block w-full rounded-sm py-1 pl-[1.4rem] text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                        i === activeIndex
+                          ? 'text-primary'
+                          : 'text-muted-foreground/45 hover:text-muted-foreground'
+                      }`}
+                    >
+                      <span
+                        className={`absolute left-0 top-[0.7rem] h-1.5 w-1.5 rounded-full transition-all duration-300 ${
+                          i === activeIndex ? 'scale-150 bg-primary' : 'bg-border'
+                        }`}
+                        aria-hidden="true"
+                      />
+                      {/* Year alone repeats — two roles begin in 2025 and two in
+                          July 2019 — so the rail read like a rendering bug.
+                          The employer disambiguates. */}
+                      <span
+                        className={`block font-mono text-sm tabular-nums ${
+                          i === activeIndex ? 'font-semibold' : ''
+                        }`}
+                      >
+                        {exp.period.start.slice(3)}
+                      </span>
+                      <span className="block truncate text-[11px] leading-tight opacity-70">
+                        {exp.short}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <ExperienceCard key={index} exp={exp} index={index} language={language} t={t} />
-              ))}
+            <div className="relative">
+              <div className="absolute left-8 top-0 bottom-0 hidden w-px bg-gradient-to-b from-primary/60 via-border to-transparent md:block lg:hidden" />
+
+              <div className="space-y-8">
+                {experiences.map((exp, index) => (
+                  <ExperienceCard
+                    key={exp.company}
+                    id={`exp-${index}`}
+                    cardRef={setCardRef(index)}
+                    exp={exp}
+                    index={index}
+                    language={language}
+                    t={t}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -199,19 +262,38 @@ export function Experience() {
   );
 }
 
-function ExperienceCard({ exp, index, language, t }: { exp: typeof experiences[0]; index: number; language: string; t: (key: string) => string }) {
+function ExperienceCard({
+  exp,
+  index,
+  language,
+  t,
+  id,
+  cardRef,
+}: {
+  exp: typeof experiences[0];
+  index: number;
+  language: string;
+  t: (key: string) => string;
+  id: string;
+  cardRef: (el: HTMLElement | null) => void;
+}) {
   const { ref, isVisible } = useScrollReveal();
 
   return (
     <div
-      ref={ref}
-      className={`relative pl-0 md:pl-20 scroll-reveal ${isVisible ? 'visible' : ''}`}
+      id={id}
+      ref={(el) => {
+        // One node, two consumers: the reveal observer and the year rail's
+        // reading-line measurement.
+        ref.current = el;
+        cardRef(el);
+      }}
+      className={`relative scroll-mt-28 pl-0 md:pl-20 lg:pl-0 scroll-reveal ${isVisible ? 'visible' : ''}`}
       style={{ transitionDelay: `${index * 0.1}s` }}
     >
-      {/* Timeline Dot with enhanced pulse */}
-      <div className="absolute left-6 top-6 hidden md:flex items-center justify-center">
-        <div className="w-5 h-5 rounded-full bg-primary shadow-glow animate-glow-pulse" />
-        <div className="absolute w-8 h-8 rounded-full border-2 border-primary/30 animate-ping" style={{ animationDuration: '3s' }} />
+      {/* Timeline dot — only below lg, where the sticky year rail is hidden. */}
+      <div className="absolute left-6 top-6 hidden items-center justify-center md:flex lg:hidden">
+        <div className="h-4 w-4 rounded-full bg-primary shadow-glow" />
       </div>
 
       <div className="glass-card rounded-2xl p-6 md:p-8 group hover:shadow-glow transition-all duration-500">

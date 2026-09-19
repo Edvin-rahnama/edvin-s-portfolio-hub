@@ -84,10 +84,6 @@ export function Education() {
 
   return (
     <section id="education" className="py-24 bg-secondary/30 relative overflow-hidden">
-      {/* Enhanced background decorations */}
-      
-      {/* Decorative academic elements */}
-      <div className="absolute bottom-40 left-16 w-12 h-12 border-2 border-primary/10 rotate-45 hidden lg:block" />
       
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeading
@@ -117,8 +113,6 @@ function EducationCard({ edu, index, language, t }: { edu: typeof education[0]; 
       className={`glass-card rounded-2xl p-8 group relative overflow-hidden scroll-reveal ${isVisible ? 'visible' : ''}`}
       style={{ transitionDelay: `${index * 0.15}s` }}
     >
-      {/* Decorative gradient corner */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 relative">
         <div className="flex items-start gap-4">
@@ -163,24 +157,33 @@ function EducationCard({ edu, index, language, t }: { edu: typeof education[0]; 
         </div>
       </div>
 
-      {/* What I Learned */}
-      <div className="mb-6 p-5 rounded-xl bg-gradient-to-br from-muted/70 to-muted/30 border border-border/50 group-hover:border-primary/20 transition-colors duration-300">
-        <div className="flex items-center gap-2 mb-4">
-          <BookOpen className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium">{t('education.learned')}</span>
+      {/* Was a bordered, filled box nested inside this card — a panel within a
+          panel, so every entry carried two competing borders. Flattened to a
+          labelled list separated by a rule. */}
+      <div className="mb-6 border-t border-border pt-5">
+        <div className="mb-4 flex items-center gap-2">
+          <BookOpen className="h-4 w-4 text-primary" aria-hidden="true" />
+          <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+            {t('education.learned')}
+          </span>
         </div>
-        <ul className="space-y-3">
+        <ul className="space-y-2.5">
           {edu.highlights[language].map((item, idx) => (
-            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground group/item">
-              <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-1.5 shrink-0 group-hover/item:scale-150 transition-transform duration-300" />
-              <span className="group-hover/item:text-foreground transition-colors duration-300 leading-relaxed">{item}</span>
+            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground">
+              <span
+                className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-primary"
+                aria-hidden="true"
+              />
+              <span className="leading-relaxed text-pretty">{item}</span>
             </li>
           ))}
         </ul>
       </div>
 
       <div>
-        <p className="text-sm text-muted-foreground mb-3 font-medium">{t('education.focus')}:</p>
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+          {t('education.focus')}
+        </p>
         <div className="flex flex-wrap gap-2">
           {edu.focus[language].map((item, idx) => (
             <span

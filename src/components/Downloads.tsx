@@ -1,48 +1,57 @@
-import { Download, FileText, Award, Users } from 'lucide-react';
+import { ArrowDownToLine, FileText, Award, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { SectionHeading } from '@/components/SectionHeading';
-import { Button } from '@/components/ui/button';
 
-const rawDownloads = [
+/**
+ * Sizes are taken from the committed files in public/downloads. They are shown
+ * because file size is the thing a reader actually wants before clicking, and
+ * the previous cards told them nothing — each repeated the word "Download"
+ * three times over and ended in an identical heavy accent button.
+ *
+ * If a PDF is replaced, update its size here.
+ */
+const downloads = [
   {
     key: 'cv_en',
     icon: FileText,
     path: 'downloads/Edvin-Rahnama-CV-EN.pdf',
     filename: 'Edvin-Rahnama-CV-EN.pdf',
+    size: '143 KB',
+    primary: true,
   },
   {
     key: 'cv_de',
     icon: FileText,
     path: 'downloads/Edvin-Rahnama-CV-DE.pdf',
     filename: 'Edvin-Rahnama-CV-DE.pdf',
+    size: '129 KB',
+    primary: true,
   },
   {
     key: 'certifications',
     icon: Award,
     path: 'downloads/Certifications.pdf',
     filename: 'Certifications.pdf',
+    size: '3.3 MB',
   },
   {
     key: 'recommendations',
     icon: Users,
     path: 'downloads/Letter-of-Recommendation.pdf',
     filename: 'Letter-of-Recommendation.pdf',
+    size: '1.3 MB',
   },
 ];
 
 export function Downloads() {
   const { t } = useLanguage();
   const base = import.meta.env.BASE_URL;
-  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref, isVisible } = useScrollReveal<HTMLUListElement>();
 
   return (
-    <section id="downloads" className="py-24 bg-secondary/30 relative overflow-hidden">
-      {/* Background decorations */}
-      
+    <section id="downloads" className="py-24 bg-secondary/30 relative">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Eyebrow and heading both rendered downloads.title, so the same word
-            appeared twice stacked — the same duplication the contact block had. */}
         <SectionHeading
           className="max-w-4xl mx-auto"
           index="06"
@@ -51,46 +60,46 @@ export function Downloads() {
           description={t('downloads.subtitle')}
         />
 
-        <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
-          {rawDownloads.map((item, index) => (
-            <DownloadCard key={item.key} item={item} index={index} base={base} t={t} />
+        <ul
+          ref={ref}
+          className={`scroll-reveal mx-auto max-w-4xl divide-y divide-border border-y border-border ${
+            isVisible ? 'visible' : ''
+          }`}
+        >
+          {downloads.map(({ key, icon: Icon, path, filename, size, primary }) => (
+            <li key={key}>
+              <a
+                href={`${base}${path}`}
+                download={filename}
+                className="group flex items-center gap-4 py-4 transition-colors duration-200 hover:bg-accent/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <Icon
+                  className={`h-5 w-5 shrink-0 ${primary ? 'text-primary' : 'text-muted-foreground'}`}
+                  aria-hidden="true"
+                />
+
+                <span className="min-w-0 flex-1">
+                  <span className="block font-medium leading-snug group-hover:text-primary">
+                    {t(`downloads.${key}`)}
+                  </span>
+                  <span className="mt-0.5 block truncate font-mono text-xs text-muted-foreground">
+                    {filename}
+                  </span>
+                </span>
+
+                <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground">
+                  PDF · {size}
+                </span>
+
+                <ArrowDownToLine
+                  className="h-4 w-4 shrink-0 text-primary opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
-  );
-}
-
-function DownloadCard({ item, index, base, t }: { item: typeof rawDownloads[0]; index: number; base: string; t: (key: string) => string }) {
-  const { ref, isVisible } = useScrollReveal();
-  const Icon = item.icon;
-  const fullFileUrl = `${base}${item.path}`;
-
-  return (
-    <div
-      ref={ref}
-      className={`glass-card rounded-2xl p-6 group scroll-reveal ${isVisible ? 'visible' : ''}`}
-      style={{ transitionDelay: `${index * 0.1}s` }}
-    >
-      <div className="flex items-start gap-4">
-        <div className="p-3 rounded-xl bg-primary/10 shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-          <Icon className="w-6 h-6 text-primary" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold font-display mb-2 group-hover:text-primary transition-colors duration-300">
-            {t(`downloads.${item.key}`)}
-          </h3>
-          <p className="text-sm text-muted-foreground mb-4">
-            {t(`downloads.${item.key}.desc`)}
-          </p>
-          <Button asChild size="sm" className="rounded-full hover:scale-105 transition-transform duration-300">
-            <a href={fullFileUrl} download={item.filename}>
-              <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-              {t('downloads.button')}
-            </a>
-          </Button>
-        </div>
-      </div>
-    </div>
   );
 }

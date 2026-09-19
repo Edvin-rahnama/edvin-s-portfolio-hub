@@ -21,9 +21,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 32% 11%;
 
-    --primary: 174 70% 40%;
+    --primary: 226 74% 52%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 174 70% 50%;
+    --primary-glow: 232 82% 62%;
 
     --secondary: 215 22% 94%;
     --secondary-foreground: 222 30% 22%;
@@ -32,26 +32,26 @@
     /* Was 40% lightness — lifted contrast for body copy and skill chips */
     --muted-foreground: 220 13% 37%;
 
-    --accent: 174 70% 95%;
-    --accent-foreground: 174 70% 30%;
+    --accent: 226 74% 95%;
+    --accent-foreground: 226 74% 38%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 218 17% 87%;
     --input: 218 17% 87%;
-    --ring: 174 70% 40%;
+    --ring: 226 74% 52%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(174 70% 40% / 0.1), hsl(200 80% 50% / 0.05));
+    --gradient-hero: linear-gradient(135deg, hsl(226 74% 52% / 0.1), hsl(258 74% 60% / 0.05));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 14% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(174 70% 40%), hsl(200 80% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(226 74% 52%), hsl(258 74% 60%));
     /* Layered: a tight contact shadow plus a wide ambient one reads as real
        elevation, where a single soft blur just looked like haze. */
     --shadow-soft: 0 1px 2px hsl(222 30% 12% / 0.06), 0 6px 20px -6px hsl(222 30% 12% / 0.10);
-    --shadow-glow: 0 0 40px hsl(174 70% 40% / 0.18);
+    --shadow-glow: 0 0 40px hsl(226 74% 52% / 0.18);
     --shadow-card: 0 1px 2px hsl(222 30% 12% / 0.05), 0 12px 32px -12px hsl(222 30% 12% / 0.16);
 
     --sidebar-background: 0 0% 98%;
@@ -76,9 +76,9 @@
     --popover: 222 38% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 174 70% 45%;
+    --primary: 226 82% 62%;
     --primary-foreground: 222 47% 6%;
-    --primary-glow: 174 70% 55%;
+    --primary-glow: 234 90% 72%;
 
     --secondary: 222 34% 15%;
     --secondary-foreground: 210 40% 98%;
@@ -86,56 +86,56 @@
     --muted: 222 34% 15%;
     --muted-foreground: 215 22% 70%;
 
-    --accent: 174 70% 15%;
-    --accent-foreground: 174 70% 70%;
+    --accent: 226 60% 16%;
+    --accent-foreground: 226 84% 78%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 222 28% 19%;
     --input: 222 28% 19%;
-    --ring: 174 70% 45%;
+    --ring: 226 82% 62%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(174 70% 45% / 0.15), hsl(200 80% 50% / 0.08));
+    --gradient-hero: linear-gradient(135deg, hsl(226 82% 62% / 0.15), hsl(258 78% 66% / 0.08));
     --gradient-card: linear-gradient(145deg, hsl(222 47% 10%), hsl(222 47% 8%));
-    --gradient-accent: linear-gradient(135deg, hsl(174 70% 45%), hsl(200 80% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(226 82% 62%), hsl(258 78% 68%));
     --shadow-soft: 0 1px 2px hsl(0 0% 0% / 0.4), 0 6px 20px -6px hsl(0 0% 0% / 0.45);
-    --shadow-glow: 0 0 60px hsl(174 70% 45% / 0.22);
+    --shadow-glow: 0 0 60px hsl(226 82% 62% / 0.22);
     --shadow-card: 0 1px 2px hsl(0 0% 0% / 0.4), 0 14px 36px -14px hsl(0 0% 0% / 0.6);
 
     --sidebar-background: 222 47% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 174 70% 45%;
+    --sidebar-primary: 226 82% 62%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 222 47% 15%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 222 47% 15%;
-    --sidebar-ring: 174 70% 45%;
+    --sidebar-ring: 226 82% 62%;
   }
 
   /* Blue theme */
   .theme-blue {
-    --primary: 217 91% 60%;
+    --primary: 189 85% 48%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 217 91% 70%;
-    --accent: 217 91% 95%;
-    --accent-foreground: 217 91% 40%;
-    --ring: 217 91% 60%;
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60% / 0.1), hsl(240 80% 60% / 0.05));
-    --gradient-accent: linear-gradient(135deg, hsl(217 91% 60%), hsl(240 80% 65%));
-    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.15);
+    --primary-glow: 189 90% 58%;
+    --accent: 189 85% 95%;
+    --accent-foreground: 189 85% 30%;
+    --ring: 189 85% 48%;
+    --gradient-hero: linear-gradient(135deg, hsl(189 85% 48% / 0.1), hsl(170 75% 45% / 0.05));
+    --gradient-accent: linear-gradient(135deg, hsl(189 85% 48%), hsl(170 75% 48%));
+    --shadow-glow: 0 0 40px hsl(189 85% 48% / 0.15);
   }
 
   .dark.theme-blue {
-    --primary: 217 91% 65%;
+    --primary: 189 90% 55%;
     --primary-foreground: 222 47% 6%;
-    --primary-glow: 217 91% 75%;
-    --accent: 217 91% 15%;
-    --accent-foreground: 217 91% 75%;
-    --ring: 217 91% 65%;
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 65% / 0.15), hsl(240 80% 60% / 0.08));
-    --gradient-accent: linear-gradient(135deg, hsl(217 91% 65%), hsl(240 80% 70%));
-    --shadow-glow: 0 0 60px hsl(217 91% 65% / 0.2);
+    --primary-glow: 189 92% 66%;
+    --accent: 189 70% 15%;
+    --accent-foreground: 189 88% 78%;
+    --ring: 189 90% 55%;
+    --gradient-hero: linear-gradient(135deg, hsl(189 90% 55% / 0.15), hsl(170 78% 50% / 0.08));
+    --gradient-accent: linear-gradient(135deg, hsl(189 90% 55%), hsl(170 78% 55%));
+    --shadow-glow: 0 0 60px hsl(189 90% 55% / 0.2);
   }
 
   /* Emerald theme */
@@ -379,6 +379,34 @@
 
   .panel:hover::after {
     opacity: 1;
+  }
+
+  /* Cursor spotlight. --mx/--my are written by usePointerSpotlight and are
+     absent until the pointer is over a panel, so the fallback centres the
+     highlight — which means it simply never appears on touch devices. */
+  @media (hover: hover) and (pointer: fine) {
+    .panel::after,
+    .glass-card::after {
+      background:
+        radial-gradient(
+          22rem circle at var(--mx, 50%) var(--my, 0%),
+          hsl(var(--primary) / 0.16),
+          transparent 60%
+        ),
+        radial-gradient(70% 60% at 50% 0%, hsl(var(--primary) / 0.1), transparent 70%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel,
+    .glass-card {
+      transition: none;
+    }
+
+    .panel:hover,
+    .glass-card:hover {
+      transform: none;
+    }
   }
 
   /* Fine film grain. Breaks up the large flat fields of a dark layout, which

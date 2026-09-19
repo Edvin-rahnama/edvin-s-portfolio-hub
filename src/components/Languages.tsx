@@ -22,7 +22,7 @@ export function Languages() {
   const { ref, isVisible } = useScrollReveal<HTMLUListElement>();
 
   return (
-    <section id="languages" className="py-24 relative">
+    <section id="languages" className="py-20 relative">
       <div className="container mx-auto px-4">
         <SectionHeading
           index="05"
