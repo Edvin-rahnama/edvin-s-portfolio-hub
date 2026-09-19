@@ -53,9 +53,10 @@ export function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="text-xl font-bold font-display text-gradient hover:scale-105 transition-transform duration-300"
+            aria-label="Edvin Rahnama — back to top"
+            className="rounded-md text-xl font-bold font-display text-gradient transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            ER
+            <span aria-hidden="true" translate="no">ER</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -77,8 +78,13 @@ export function Navbar() {
             {/* Color Theme Picker */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full hover:scale-110 transition-transform duration-300">
-                  <Palette className="h-4 w-4" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Change accent colour"
+                  className="rounded-full hover:scale-110 transition-transform duration-300"
+                >
+                  <Palette className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="animate-scale-in">
@@ -122,20 +128,21 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
               className="rounded-full hover:scale-110 transition-transform duration-300"
             >
               {theme === 'dark' ? (
-                <Sun className="h-4 w-4 transition-transform duration-300 hover:rotate-45" />
+                <Sun className="h-4 w-4 transition-transform duration-300 hover:rotate-45" aria-hidden="true" />
               ) : (
-                <Moon className="h-4 w-4 transition-transform duration-300 hover:-rotate-12" />
+                <Moon className="h-4 w-4 transition-transform duration-300 hover:-rotate-12" aria-hidden="true" />
               )}
             </Button>
 
             {/* Language Toggle */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <Globe className="h-4 w-4" />
+                <Button variant="ghost" size="icon" aria-label="Change language" className="rounded-full">
+                  <Globe className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -154,11 +161,14 @@ export function Navbar() {
               size="icon"
               className="lg:hidden rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5" aria-hidden="true" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5" aria-hidden="true" />
               )}
             </Button>
           </div>
@@ -166,7 +176,7 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-border animate-fade-in bg-background/95 backdrop-blur-md rounded-lg shadow-lg">
+          <div id="mobile-menu" className="lg:hidden mt-4 py-4 border-t border-border animate-fade-in bg-background/95 backdrop-blur-md rounded-lg shadow-lg">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a

@@ -39,7 +39,7 @@ export function Footer() {
               className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all duration-300 hover:scale-110"
             >
               <span className="sr-only">GitHub</span>
-              <Github className="w-5 h-5" />
+              <Github className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
               href="https://www.linkedin.com/in/edvin-rahnama-908b1b179/" 
@@ -48,14 +48,14 @@ export function Footer() {
               className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all duration-300 hover:scale-110"
             >
               <span className="sr-only">LinkedIn</span>
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-5 h-5" aria-hidden="true" />
             </a>
             <a 
               href="mailto:amirhossein.rahnama@outlook.com"
               className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all duration-300 hover:scale-110"
             >
               <span className="sr-only">Email</span>
-              <Mail className="w-5 h-5" />
+              <Mail className="w-5 h-5" aria-hidden="true" />
             </a>
           </div>
 
@@ -65,7 +65,7 @@ export function Footer() {
             onClick={scrollToTop}
             className="rounded-full bg-background border-primary/20 hover:bg-primary hover:text-primary-foreground hover:scale-110 transition-all duration-300 shadow-sm"
           >
-            <ChevronUp className="w-5 h-5" />
+            <ChevronUp className="w-5 h-5" aria-hidden="true" />
             <span className="sr-only">Back to top</span>
           </Button>
 
