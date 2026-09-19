@@ -11,8 +11,10 @@ const education = [
     },
     institution: 'Kiel University of Applied Sciences',
     location: { en: 'Kiel, Germany', de: 'Kiel, Deutschland', es: 'Kiel, Alemania' },
-    period: '09/2022 – 12/2025',
-    current: true,
+    // Completed Jul 2026 per CV. Was '09/2022 – 12/2025' with current: true,
+    // which advertised an in-progress degree that has since been awarded.
+    period: '09/2022 – 07/2026',
+    current: false,
     highlights: {
       en: [
         'Advanced studies in machine learning algorithms, statistical modeling, and deep learning architectures (CNNs, RNNs, Transformers).',

@@ -2,12 +2,28 @@ import { Briefcase, Calendar, MapPin, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
+/**
+ * Bullets are authored as "Topic: detail". Emphasising the topic turns a wall of
+ * prose into something scannable — this is the longest section on the page.
+ * Only treats a colon as a label separator when it appears early, so sentences
+ * that merely contain a colon are left intact.
+ */
+function splitBullet(text: string): { label: string | null; body: string } {
+  const i = text.indexOf(': ');
+  if (i > 0 && i <= 60) {
+    return { label: text.slice(0, i), body: text.slice(i + 2) };
+  }
+  return { label: null, body: text };
+}
+
 const experiences = [
   {
     title: { en: 'Data Scientist (Master Thesis)', de: 'Data Scientist (Masterarbeit)', es: 'Científico de Datos (Tesis de Maestría)' },
     company: 'Helmholtz-Zentrum Hereon',
     location: { en: 'Geesthacht, Germany', de: 'Geesthacht, Deutschland', es: 'Geesthacht, Alemania' },
-    period: { start: '07/2025', end: null },
+    // Thesis concluded Jul 2026 (per CV). Was `end: null`, which rendered
+    // "Present" and kept a "Current" badge on a finished engagement.
+    period: { start: '07/2025', end: '07/2026' },
     techStack: ['Python', 'Deep Learning', 'PINNs/PINO', 'TensorFlow', 'NumPy', 'Git', 'MLOps'],
     description: {
       en: [
@@ -247,12 +263,18 @@ function ExperienceCard({ exp, index, language, t }: { exp: typeof experiences[0
         </div>
 
         <ul className="space-y-3">
-          {exp.description[language].map((item, idx) => (
-            <li key={idx} className="flex items-start gap-3 text-muted-foreground group/item">
-              <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-2 shrink-0 group-hover/item:scale-150 transition-transform duration-300 shadow-sm" />
-              <span className="group-hover/item:text-foreground transition-colors duration-300 leading-relaxed">{item}</span>
-            </li>
-          ))}
+          {exp.description[language].map((item, idx) => {
+            const { label, body } = splitBullet(item);
+            return (
+              <li key={idx} className="flex items-start gap-3 text-muted-foreground group/item">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-br from-primary to-primary-glow mt-2 shrink-0 group-hover/item:scale-150 transition-transform duration-300 shadow-sm" />
+                <span className="leading-relaxed transition-colors duration-300 group-hover/item:text-foreground">
+                  {label && <strong className="font-semibold text-foreground">{label}. </strong>}
+                  {body}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
