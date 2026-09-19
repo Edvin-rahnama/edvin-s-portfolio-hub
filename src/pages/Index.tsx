@@ -12,7 +12,7 @@ import { Footer } from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="grain min-h-screen bg-background">
       {/* Keyboard users would otherwise tab through all eight nav links, three
           control menus and the menu toggle before reaching any content. */}
       <a

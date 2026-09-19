@@ -163,7 +163,7 @@ function SkillCard({
   return (
     <div
       ref={ref}
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-card scroll-reveal ${
+      className={`panel group relative overflow-hidden p-6 scroll-reveal ${
         isVisible ? 'visible' : ''
       } ${category.span ? 'lg:col-span-2' : ''}`}
       style={{ transitionDelay: `${index * 0.08}s` }}

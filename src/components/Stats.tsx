@@ -42,7 +42,7 @@ export function Stats() {
                 className="mb-1 h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110"
                 aria-hidden="true"
               />
-              <span className="font-display text-3xl font-bold tabular-nums text-foreground md:text-4xl">
+              <span className="text-accent-gradient font-display text-4xl font-bold tabular-nums md:text-5xl">
                 {value}
               </span>
               <span className="text-center font-mono text-[11px] uppercase tracking-wider text-muted-foreground">

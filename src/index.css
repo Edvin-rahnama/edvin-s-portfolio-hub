@@ -318,6 +318,95 @@
     @apply backdrop-blur-xl bg-background/80 border border-border/50;
   }
 
+  /* ── Surfaces ──────────────────────────────────────────────────────────────
+     Cards were a flat fill inside a 1px border, which reads as a wireframe
+     rather than a material. A panel now has a faint vertical gradient, a
+     highlight hairline along its top edge where light would catch, and an
+     accent bloom that fades up on hover. */
+  .panel {
+    position: relative;
+    isolation: isolate;
+    border-radius: 1rem;
+    border: 1px solid hsl(var(--border));
+    background-image: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 320%);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  /* Top-edge highlight. A pseudo-element rather than a border so it can fade
+     out at both ends instead of ending abruptly at the corners. */
+  .panel::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.55) 35%,
+      hsl(var(--primary) / 0.55) 65%,
+      transparent
+    );
+    opacity: 0.5;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(70% 60% at 50% 0%, hsl(var(--primary) / 0.12), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .panel:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: var(--shadow-card), 0 0 0 1px hsl(var(--primary) / 0.08),
+      0 18px 50px -24px hsl(var(--primary) / 0.45);
+  }
+
+  .panel:hover::before {
+    opacity: 1;
+  }
+
+  .panel:hover::after {
+    opacity: 1;
+  }
+
+  /* Fine film grain. Breaks up the large flat fields of a dark layout, which
+     otherwise band visibly on wide gradients. */
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Headline gradient — warmer at the start, cooling into the accent. */
+  .text-accent-gradient {
+    background-image: linear-gradient(
+      100deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-glow)) 45%,
+      hsl(var(--primary) / 0.75) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
   /* Fine technical grid, faded out towards the edges. Replaces the blurred
      decorative orbs that previously filled every section background. */
   .bg-grid-fade {
@@ -328,17 +417,59 @@
     mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
   }
 
-  /* Border was at 40% opacity over a near-white page, so cards had no visible
-     edge and read as floating text. Full-strength border + real elevation. */
+  /* Retained as an alias so existing call sites pick up the panel treatment
+     (gradient fill, top-edge highlight, accent bloom on hover) without each
+     component having to be rewritten. */
   .glass-card {
-    @apply bg-card border border-border shadow-card;
-    backdrop-filter: blur(12px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    isolation: isolate;
+    border: 1px solid hsl(var(--border));
+    background-image: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 320%);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.55) 35%,
+      hsl(var(--primary) / 0.55) 65%,
+      transparent
+    );
+    opacity: 0.5;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(70% 60% at 50% 0%, hsl(var(--primary) / 0.12), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
   }
 
   .glass-card:hover {
-    @apply shadow-glow border-primary/40;
     transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: var(--shadow-card), 0 0 0 1px hsl(var(--primary) / 0.08),
+      0 18px 50px -24px hsl(var(--primary) / 0.45);
+  }
+
+  .glass-card:hover::before,
+  .glass-card:hover::after {
+    opacity: 1;
   }
 
   .card-hover {

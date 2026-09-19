@@ -43,7 +43,7 @@ export function Hero() {
                 clamp lets it scale with the viewport instead of stepping. */}
             <h1 className="font-display font-extrabold leading-[0.88] tracking-[-0.03em]">
               <span className="block text-[clamp(3rem,9vw,6.5rem)]">Edvin</span>
-              <span className="block text-[clamp(3rem,9vw,6.5rem)] text-primary">Rahnama</span>
+              <span className="text-accent-gradient block text-[clamp(3rem,9vw,6.5rem)]">Rahnama</span>
             </h1>
 
             <div className="mt-9 flex max-w-xl items-start gap-5">
