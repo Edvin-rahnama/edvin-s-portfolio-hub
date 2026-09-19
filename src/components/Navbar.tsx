@@ -40,7 +40,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const { theme, colorTheme, toggleTheme, setColorTheme } = useTheme();
-  const activeSection = useActiveSection(SECTION_IDS);
+  const { active: activeSection, selectSection } = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,6 +81,10 @@ export function Navbar() {
                   key={item.key}
                   href={item.href}
                   aria-current={isActive ? 'true' : undefined}
+                  // Highlight immediately rather than waiting for the smooth
+                  // scroll to land. Default is not prevented, so Cmd/middle
+                  // click and keyboard activation keep working.
+                  onClick={() => selectSection(item.href.slice(1))}
                   className={`relative rounded-sm text-sm font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:origin-right after:bg-primary after:transition-transform after:duration-300 hover:text-primary hover:after:origin-left hover:after:scale-x-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background ${
                     isActive
                       ? 'text-primary after:scale-x-100'

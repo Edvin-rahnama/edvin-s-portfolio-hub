@@ -172,7 +172,7 @@ const experiences = [
 
 export function Experience() {
   const { language, t } = useLanguage();
-  const { index: activeIndex, setRef: setCardRef } = useActiveIndex(experiences.length);
+  const { index: activeIndex, setRef: setCardRef, select } = useActiveIndex(experiences.length);
 
   return (
     <section id="experience" className="py-32 bg-secondary/30 relative">
@@ -201,11 +201,15 @@ export function Experience() {
                   <li key={exp.company}>
                     <button
                       type="button"
-                      onClick={() =>
+                      onClick={() => {
+                        // Mark it active up front. Deriving the highlight purely
+                        // from scroll position made a click appear to select the
+                        // previous entry for as long as the smooth scroll ran.
+                        select(i);
                         document
                           .getElementById(`exp-${i}`)
-                          ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                      }
+                          ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }}
                       aria-current={i === activeIndex ? 'true' : undefined}
                       className={`relative -ml-[1.4rem] block w-full rounded-sm py-1 pl-[1.4rem] text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                         i === activeIndex
