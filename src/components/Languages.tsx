@@ -1,6 +1,6 @@
-import { Languages as LanguagesIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeading } from '@/components/SectionHeading';
 
 const languages = [
   { key: 'languages.english', level: 85 },
@@ -14,16 +14,17 @@ export function Languages() {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="languages" className="py-16 relative">
+    <section id="languages" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <div ref={ref} className={`max-w-2xl mx-auto scroll-reveal ${isVisible ? 'visible' : ''}`}>
-          <div className="flex items-center gap-3 mb-8 justify-center">
-            <div className="p-2.5 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors duration-300">
-              <LanguagesIcon className="w-5 h-5 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold font-display">{t('languages.title')}</h3>
-          </div>
-
+        {/* This section was the only one without a heading, which left a gap at
+            05 in the running section index. */}
+        <SectionHeading
+          index="05"
+          label={t('languages.eyebrow')}
+          title={t('languages.title')}
+          className="max-w-4xl mx-auto"
+        />
+        <div ref={ref} className={`max-w-4xl mx-auto scroll-reveal ${isVisible ? 'visible' : ''}`}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {languages.map((lang, index) => (
               <div

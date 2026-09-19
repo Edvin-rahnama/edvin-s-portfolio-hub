@@ -93,6 +93,7 @@ const translations = {
 
     // Languages
     'languages.title': 'Languages',
+    'languages.eyebrow': 'Communication',
     'languages.english': 'English',
     'languages.german': 'German',
     'languages.turkish': 'Turkish',
@@ -190,6 +191,7 @@ const translations = {
 
     // Languages
     'languages.title': 'Sprachen',
+    'languages.eyebrow': 'Kommunikation',
     'languages.english': 'Englisch',
     'languages.german': 'Deutsch',
     'languages.turkish': 'Türkisch',
