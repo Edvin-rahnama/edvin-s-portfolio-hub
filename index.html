@@ -2,23 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Edvin Rahnama | Portfolio</title>
-    <meta name="description" content="Edvin Rahnama's Portfolio" />
-    <meta name="author" content="Edvin Rahnama" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Edvin Rahnama | Portfolio" />
-    <meta property="og:description" content="Data Scientist & Software Engineer Portfolio" />
+    <title>Edvin Rahnama | Data Scientist &amp; Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Edvin Rahnama — Data Scientist &amp; Software Engineer in Kiel, Germany. Machine Learning, MLOps, Python, AWS and Docker."
+    />
+    <meta name="author" content="Edvin Rahnama" />
+    <link rel="canonical" href="https://edvin-rahnama.space/" />
+
+    <!-- Colour scheme: lets the browser paint native UI (scrollbars, form controls) correctly -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a1220" media="(prefers-color-scheme: dark)" />
+
+    <!-- Fonts: preconnect + stylesheet link. Loading these via @import inside index.css
+         silently failed — PostCSS drops any @import that follows the @tailwind directives,
+         so the site shipped with system fallbacks instead of Outfit / JetBrains Mono. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    />
+
+    <meta property="og:title" content="Edvin Rahnama | Data Scientist &amp; Software Engineer" />
+    <meta
+      property="og:description"
+      content="Machine Learning, MLOps and data engineering. Python, AWS, Docker. Based in Kiel, Germany."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:url" content="https://edvin-rahnama.space/" />
+    <meta property="og:image" content="https://edvin-rahnama.space/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Edvin Rahnama — Data Scientist &amp; Software Engineer" />
+    <meta property="og:locale" content="en_GB" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@edvinrahnama" />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:title" content="Edvin Rahnama | Data Scientist &amp; Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Machine Learning, MLOps and data engineering. Python, AWS, Docker. Based in Kiel, Germany."
+    />
+    <meta name="twitter:image" content="https://edvin-rahnama.space/og-image.png" />
+
     <script>
-      (function(){
+      (function () {
         var redirect = sessionStorage.getItem('redirect');
         sessionStorage.removeItem('redirect');
         if (redirect && redirect != location.href) {

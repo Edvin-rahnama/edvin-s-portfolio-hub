@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* Fonts are loaded from index.html via <link rel="preconnect"> + stylesheet.
+   An @import here is silently dropped at build time (it must precede all other
+   statements, and the @tailwind directives above come first), which is why the
+   site previously rendered in system fallbacks. Do not re-add it here. */
 
 @layer base {
   :root {
@@ -447,13 +450,22 @@
     transform: translateY(0);
   }
 
-  /* Typing animation */
+  /* Typing animation.
+     `width` animates 0 -> 100%, so the element must be sized to its own text
+     (max-content). Without that it stretches to the full width of its flex row
+     and the caret ends up stranded hundreds of pixels past the last character. */
   .animate-typing {
-    overflow: hidden;
-    border-right: 3px solid hsl(var(--primary));
-    white-space: nowrap;
-    animation: typing 2.5s steps(40, end) forwards, blink-caret 0.75s step-end 6;
+    display: inline-block;
     width: 0;
+    max-width: max-content;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    border-right: 3px solid hsl(var(--primary));
+    /* `forwards` on blink-caret matters: its final keyframe is transparent, so the
+       caret retires after blinking. Without it the border snaps back to its static
+       value and a 3px bar stays welded to the text permanently. */
+    animation: typing 2.5s steps(32, end) forwards, blink-caret 0.75s step-end 6 forwards;
   }
 
   @media (max-width: 768px) {
@@ -463,8 +475,50 @@
       border-right: none;
       animation: fadeSlideIn 0.8s ease-out 0.3s forwards;
       width: auto;
+      max-width: none;
       opacity: 0;
     }
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────────
+   This page runs many infinite decorative loops (float, pulse, rotate, bounce,
+   shimmer). Honour the OS preference: show final state, drop the motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* These start hidden and are revealed *by* animation, so they need an
+     explicit visible resting state or the content would never appear. */
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .animate-typing {
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    border-right: none !important;
+    opacity: 1 !important;
+  }
+
+  .animate-slide-up,
+  .animate-fade-in,
+  .animate-scale-in {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

@@ -63,9 +63,7 @@ export function Hero() {
 
               <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
                 <h2 className="text-xl md:text-2xl text-muted-foreground font-medium mb-6 flex lg:justify-start justify-center">
-                  <span className="animate-typing inline-block">
-                    {t('hero.role')}
-                  </span>
+                  <span className="animate-typing">{t('hero.role')}</span>
                 </h2>
               </div>
 
@@ -115,7 +113,10 @@ export function Hero() {
                 <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-glow transition-all duration-500 group-hover:shadow-[0_0_80px_hsl(var(--primary)/0.4)]">
                   <img
                     src={profileImage}
-                    alt="Edvin Rahnama - Data Scientist and Software Engineer"
+                    alt="Edvin Rahnama, Data Scientist and Software Engineer"
+                    width={384}
+                    height={384}
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   {/* Overlay gradient on hover */}
@@ -130,15 +131,24 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-          <a href="#experience" className="text-muted-foreground hover:text-primary transition-colors group">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">scroll</span>
-              <ArrowDown className="w-6 h-6 animate-bounce" />
-            </div>
-          </a>
-        </div>
+      </div>
+
+      {/* Scroll indicator. This must be a child of <section>, not of the inner
+          container: the container is only as tall as its content, so positioning
+          `bottom-10` against it stranded the arrow in mid-layout on desktop and
+          dropped it straight on top of the profile photo on mobile. Hidden below
+          lg, where the hero is already taller than the viewport. */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:block">
+        <a
+          href="#experience"
+          aria-label="Scroll to Experience"
+          className="group flex flex-col items-center gap-2 rounded-full p-2 text-muted-foreground transition-colors hover:text-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <span className="text-xs font-mono opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+            Scroll
+          </span>
+          <ArrowDown className="h-6 w-6 animate-bounce" aria-hidden="true" />
+        </a>
       </div>
     </section>
   );
